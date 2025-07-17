@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import project.annotations.ConceptualAPI;
+import project.annotations.NetworkAPI;
+import project.annotations.ProcessAPI;
 import spoon.Launcher;
 import spoon.reflect.declaration.CtType;
 import spoon.reflect.reference.CtExecutableReference;
