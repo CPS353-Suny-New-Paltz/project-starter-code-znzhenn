@@ -195,11 +195,10 @@
     </module>
 
             <!-- checkstyle rules added by me: -->
-    <module name="NoWhitespaceBeforeCaseDefaultColon"/>
+        <module name="NoWhitespaceBeforeCaseDefaultColon"/>
     <module name="MagicNumber">
-    	<property name = "ignoreNumbers" value = "-1, 0, 1"/>
-    	<property name = "ignoreHashCodeMethod" value = "true"/>
-	</module>
+        <property name="ignoreNumbers" value="-1, 0, 1"/>
+        <property name="ignoreHashCodeMethod" value="true"/>
     </module>
-  </module>
-</module>
+  </module> 
+</module>   
