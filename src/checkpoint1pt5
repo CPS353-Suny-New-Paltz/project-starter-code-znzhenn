@@ -1,0 +1,13 @@
+public class checkpoint1pt5 {
+	public static void main(String[] args){
+	
+	//to fail
+	System.out.println("white space before colon") ;
+
+	
+	//to pass
+	System.out.println("Hello world");
+	
+	
+	}
+}
