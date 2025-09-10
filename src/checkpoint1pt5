@@ -1,9 +1,13 @@
+package project.annotations;
+
 public class checkpoint1pt5 {
 
     public static void main(String[] args) {
         Checkpoint1pt5 c = new Checkpoint1pt5();
-        System.out.println(c.check(42)); // This will trigger MagicNumber
+        System.out.println(c.check(42));
         System.out.println("Hello world");
+        
+        System.out.println("Please fail")
     }
 
     public boolean check(int value) {
