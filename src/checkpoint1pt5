@@ -1,21 +1,18 @@
 public class checkpoint1pt5 {
-	
-	public static void main(String[] args) {
-	    int threshold = 42;
+
+    public static void main(String[] args) {
         Checkpoint1pt5 c = new Checkpoint1pt5();
-        System.out.println(c.check(42));
+        System.out.println(c.check(42)); // This will trigger MagicNumber
         System.out.println("Hello world");
     }
 
-    public boolean check(int threshold) {
-        if (threshold == 99) { 
+    public boolean check(int value) {
+        if (value == 99) {
             return true;
         }
-        if (threshold == 0) {
+        if (value == 0) {
             return false;
         }
         return value == 1;
     }
-
-    
 }
