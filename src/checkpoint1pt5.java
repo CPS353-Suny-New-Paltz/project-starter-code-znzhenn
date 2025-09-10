@@ -1,11 +1,9 @@
-package project.annotations;
-
 public class checkpoint1pt5 {
 
     public static void main(String[] args) {
     
-        Checkpoint1pt5 c = new Checkpoint1pt5();
-        System.out.println(c.check(42));
+    	int value = 89;
+        System.out.println(check;
         System.out.println("Hello world");
         System.out.println("Please fail")
     }
