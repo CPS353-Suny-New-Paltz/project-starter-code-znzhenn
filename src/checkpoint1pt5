@@ -1,21 +1,26 @@
 public class checkpoint1pt5 {
+	public static void main(String[] args){
 	
-	public static void main(String[] args) {
-	    int threshold = 42;
-        Checkpoint1pt5 c = new Checkpoint1pt5();
-        System.out.println(c.check(42));
-        System.out.println("Hello world");
-    }
+	//to fail
+	public class MagicNumberViolation {
+	
+    private int threshold = 42;
 
-    public boolean check(int threshold) {
-        if (value == 99) { 
+    public boolean check(int value) {
+        if (value == 99) {
             return true;
         }
         if (value == 0) {
             return false;
         }
         return value == 1;
-    }
-
-    
+    	}
+	}
+	
+	//to pass
+	System.out.println("Hello world");
+	System.out.println("white space before colon") ;
+	
+	
+	}
 }
