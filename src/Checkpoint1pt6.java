@@ -6,8 +6,8 @@ public class Checkpoint1pt6 {
 		
 		
 		
-		int[] badArray = {1,2,3,4, 0, 1, -1}; 
-		//difficulty printing magic number
+		int[] badArray = {0, 1, -1}; 
+		// no more magic numbers
 		
 		for (int i=0; i<badArray.length-1; i++) {
 			System.out.println(i);
