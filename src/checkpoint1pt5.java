@@ -5,11 +5,12 @@ public class checkpoint1pt5 {
 		System.out.println("Hello World");
 		
 		int[] badArray = {20,25,5,99,-1}; 
+		//difficulty printing magic number
 		
-		for(int i=0; i<badArray.length-1; i++) {
+		for (int i=0; i<badArray.length-1; i++) {
 			System.out.println(i);
 			i++;
 			
-		 // intentionally forget curly bracket here
+		} //replaced the bracket here
 	}
 }
