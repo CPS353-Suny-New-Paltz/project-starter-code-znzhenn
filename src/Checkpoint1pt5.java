@@ -1,4 +1,4 @@
-public class checkpoint1pt5 {
+public class Checkpoint1pt5 {
 
 	public static void main(String[] args) {
 		
