@@ -4,7 +4,9 @@ public class Checkpoint1pt5 {
 		
 		System.out.println("Hello World");
 		
-		int[] badArray = {20,25,5,99,-1}; 
+		
+		
+		int[] badArray = {0, 1, -1}; 
 		//difficulty printing magic number
 		
 		for (int i=0; i<badArray.length-1; i++) {
