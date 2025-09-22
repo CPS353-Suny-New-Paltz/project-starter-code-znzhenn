@@ -5,6 +5,6 @@ This repo will start you off with an initial configuration that you'll modify as
 
 - **Checkpoint 2: Drafting an API**
 	- Part 1: System computation
-			- Calculate the factorial of a number
+			- Calculate the factorial of a string of numbers added together
 	- Part 2: System Design Diagram
 	
