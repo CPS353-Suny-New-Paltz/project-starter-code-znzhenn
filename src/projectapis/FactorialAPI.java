@@ -1,5 +1,5 @@
 //conceptual api
-package projectAPIs;
+package projectapis;
 import project.annotations.ConceptualAPI;
 
 @ConceptualAPI

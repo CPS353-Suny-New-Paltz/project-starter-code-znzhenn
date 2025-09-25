@@ -1,5 +1,5 @@
 // process api
-package projectAPIs;
+package projectapis;
 import project.annotations.ProcessAPI;
 
 @ProcessAPI
