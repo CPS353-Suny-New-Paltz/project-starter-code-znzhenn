@@ -26,7 +26,6 @@ public class TestStatusCheckPR {
     private static final String SUCCESS = "success";
     private static final String APPROVED = "APPROVED";
     
-    /* commenting out checkpoint 1 test (already passed)
     @Test
     public void testPullRequest() throws Exception {
         String baseApiPath = getBaseApiPath();
@@ -45,7 +44,7 @@ public class TestStatusCheckPR {
             }
         }
         Assertions.assertTrue(foundPullRequest, "No pull request with required status checks (failure, then success) and reviewer approval found");
-    } */
+    }
     
     // query the git remote to find the repo URL
     private String getBaseApiPath() throws Exception {
