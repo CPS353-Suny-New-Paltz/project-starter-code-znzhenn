@@ -194,11 +194,13 @@
       <property name="influenceFormat" value="1"/>
     </module>
 
-            <!-- checkstyle rules added by me: -->
-        <module name="NoWhitespaceBeforeCaseDefaultColon"/>
-    <module name="MagicNumber">
-        <property name="ignoreNumbers" value="-1, 0, 1"/>
-        <property name="ignoreHashCodeMethod" value="true"/>
+    <!-- checkstyle rules added by me: -->
+    <module name="NoWhitespaceBefore">
+        <property name="tokens" value="CASE_COLON,DEFAULT_COLON"/>
     </module>
+    <module name="NoWhitespaceBefore">
+        <property name="tokens" value="SEMI"/>
+	</module>
+    
   </module> 
 </module>   
