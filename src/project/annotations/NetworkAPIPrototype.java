@@ -9,4 +9,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NetworkAPIPrototype {
 	// Marker annotation, should be applied to a method within a prototype class
+	
+	//takes in user input --> sends to compute engine (manages the requests)
 }
