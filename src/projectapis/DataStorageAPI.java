@@ -11,6 +11,6 @@ public interface DataStorageAPI {
     long fetchComputation();
     
     //check to see if it even exists (way to track)
-    boolean hasComputation();
+    ComputationStatus getComputationStatus();
     
 }
