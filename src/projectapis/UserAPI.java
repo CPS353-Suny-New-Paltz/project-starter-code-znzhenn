@@ -1,5 +1,5 @@
 //network api
-package projectAPIs;
+package projectapis;
 import project.annotations.NetworkAPI;
 
 @NetworkAPI
