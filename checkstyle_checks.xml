@@ -1,7 +1,4 @@
-<?xml version="1.0"?>
-<!DOCTYPE module PUBLIC
-          "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
-          "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
 
 <module name="Checker">
   <module name="SuppressWarningsFilter"/>
@@ -194,15 +191,13 @@
       <property name="influenceFormat" value="1"/>
     </module>
 
-            <!-- checkstyle rules added by me: -->
-	<module name="NoWhitespaceBeforeCaseDefaultColon"/>
+	<!-- checkstyle rules added by me: -->
 	<module name="NoWhitespaceBefore">
-	    <property name="tokens" value="SEMI"/>
+	    <property name="tokens" value="SEMI, CASE_COLON, DEFAULT"/>
 	</module>
 	<module name="MagicNumber">
     	<property name="ignoreNumbers" value="true"/>
 	</module>
-
 
 
   </module> 
