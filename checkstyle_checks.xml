@@ -194,11 +194,11 @@
       <property name="influenceFormat" value="1"/>
     </module>
 
-            <!-- checkstyle rules added by me: -->
-	<module name="NoWhitespaceBeforeCaseDefaultColon"/>
+    <!-- checkstyle rules added by me: -->
 	<module name="NoWhitespaceBefore">
 	    <property name="tokens" value="SEMI"/>
 	</module>
+
 
 
   </module> 
