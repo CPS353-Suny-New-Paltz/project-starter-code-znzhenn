@@ -5,6 +5,7 @@ This repo will start you off with an initial configuration that you'll modify as
 
 - **Checkpoint 2: Drafting an API**
 	- Part 1: System computation
-			- Calculate the factorial of a string of numbers added together
+			- Sum of the factorials of each digit
 	- Part 2: System Design Diagram
-	<img width="1440" alt="system diagram from computation" src="https://github.com/CPS353-Suny-New-Paltz/project-starter-code-znzhenn/blob/checkpoint-2/images/chkpt2diagram.jpeg">
+	<img width="1440" alt="sum of factorials api diagram" src="https://github.com/CPS353-Suny-New-Paltz/project-starter-code-znzhenn/blob/checkpoint-2/images/checkpoint2diagram.jpeg">
+	
