@@ -4,8 +4,13 @@ import project.annotations.NetworkAPI;
 
 @NetworkAPI
 public interface UserAPI {
-	//fetching factorial of the sum
-    long fetchFactorialOfSum(); 
-    
-    long fetchExistingResult();
+	
+	//set input and output sources
+	void setInput(String input);
+	void setOutput(String output);
+	
+	//not necessary in my computation
+	void setDelimiter(String delimiter);
+	
+	void executeComputation();
 }
