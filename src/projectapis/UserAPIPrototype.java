@@ -7,7 +7,12 @@ public class UserAPIPrototype {
     @NetworkAPIPrototype
     public static void prototype(UserAPI api) {
         // pretend client usage
-        long factorialSum = api.fetchFactorialOfSum();
-        long existingResult = api.fetchExistingResult();
+    	api.setInput("input.txt");
+        api.setOutput("output.txt");
+        
+        //not useful to my project but optional
+        api.setDelimiter(",");
+        api.executeComputation();
+
     }
 }
