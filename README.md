@@ -9,5 +9,11 @@ This repo will start you off with an initial configuration that you'll modify as
 			
 	- Part 2: System Design Diagram
 
+
 ![Sum of Factorials API Diagram](images/checkpoint2diagram.jpeg)
+
+	- Part 2: System Design Diagram
+	<img width="1440" alt="sum of factorials api diagram" src="https://github.com/CPS353-Suny-New-Paltz/project-starter-code-znzhenn/blob/checkpoint-2-updates/images/checkpoint2diagram.jpeg">
+	
+>>>>>>> main
 	

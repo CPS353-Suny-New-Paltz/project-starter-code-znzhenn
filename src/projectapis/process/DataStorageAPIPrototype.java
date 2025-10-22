@@ -1,5 +1,7 @@
 package projectapis.process;
 
+import java.util.List;
+import java.util.Arrays;
 import project.annotations.ProcessAPIPrototype;
 import projectapis.ComputationStatus;
 
@@ -8,8 +10,8 @@ public class DataStorageAPIPrototype {
     @ProcessAPIPrototype
     public static void prototype(DataStorageAPI api) {
         // pretend client usage
-        api.saveComputation();
-        long result = api.fetchComputation();
+    	List<Integer> inputs = api.loadIntegers("input.txt", ",");
+        api.storeResults("output.txt", Arrays.asList(145L, 720L));
         ComputationStatus status = api.getComputationStatus();
     }
 }
