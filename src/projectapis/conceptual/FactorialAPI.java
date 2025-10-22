@@ -6,4 +6,7 @@ import project.annotations.ConceptualAPI;
 public interface FactorialAPI{
 	//doing the actual computation
 	long factorialOfSum();
+
+	//necessary for the implementation
+	int computeFactorial(int n);
 }

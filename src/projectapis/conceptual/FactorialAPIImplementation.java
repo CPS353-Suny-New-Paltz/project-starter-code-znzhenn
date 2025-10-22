@@ -6,4 +6,10 @@ public class FactorialAPIImplementation implements FactorialAPI {
 		//empty implementation
 		return 0;
 	}
+
+	@Override
+	public long factorialOfSum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

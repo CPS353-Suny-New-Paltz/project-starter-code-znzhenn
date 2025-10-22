@@ -13,5 +13,9 @@ public interface DataStorageAPI {
     
     //check to see if it even exists (way to track)
     ComputationStatus getComputationStatus();
+
+	String loadData();
+
+	void saveData(String data);
     
 }

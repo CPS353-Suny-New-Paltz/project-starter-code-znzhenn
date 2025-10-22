@@ -4,13 +4,13 @@ import projectapis.ComputationStatus;
 
 public class DataStorageAPIImplementation implements DataStorageAPI {
 
-    @Override
+	@Override
     public void saveData(String data) {
         // Example implementation
         System.out.println("Saving data: " + data);
     }
-
-    @Override
+	
+	@Override
     public String loadData() {
         // Example implementation
         return "Loaded data";
