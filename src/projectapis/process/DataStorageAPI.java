@@ -1,6 +1,7 @@
 // process api
-package projectapis;
+package projectapis.process;
 import project.annotations.ProcessAPI;
+import projectapis.ComputationStatus;
 
 @ProcessAPI
 public interface DataStorageAPI {
