@@ -1,15 +1,25 @@
 package projectapis.conceptual;
 
-public class FactorialAPIImplementation implements FactorialAPI {
-	@Override
-	public int computeFactorial(int n) {
-		//empty implementation
-		return 0;
-	}
+import project.annotations.ConceptualAPI;
 
-	@Override
-	public long factorialOfSum() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+@ConceptualAPI
+public class FactorialAPIImplementation implements FactorialAPI {
+
+    @Override
+    public long factorialOfSum() {
+        // Stub implementation
+        return 0;
+    }
+
+    @Override
+    public int computeFactorial(int n) {
+        // Stub implementation
+        return 0;
+    }
+
+    @Override
+    public long computeDigitFactorialSum(int number) {
+        // Stub implementation
+        return 0;
+    }
 }

@@ -23,5 +23,7 @@ public interface DataStorageAPI {
 	String loadData();
 
 	void saveData(String data);
+
+	void saveComputation();
     
 }

@@ -12,5 +12,7 @@ public interface UserAPI {
 	//not necessary in my computation
 	void setDelimiter(String delimiter);
 	
-	void executeComputation();
+	long executeComputation();
+	long fetchFactorialOfSum();
+	long fetchExistingResult();
 }
