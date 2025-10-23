@@ -3,8 +3,8 @@ package smoketests;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import projectapis.network.UserAPI;
-import projectapis.network.UserAPIImplementation;
+import network.UserAPI;
+import network.UserAPIImplementation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

@@ -1,4 +1,4 @@
-package projectapis.process;
+package process;
 
 import java.util.List;
 import projectapis.ComputationStatus;

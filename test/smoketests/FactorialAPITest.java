@@ -3,8 +3,8 @@ package smoketests;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import projectapis.conceptual.FactorialAPI;
-import projectapis.conceptual.FactorialAPIImplementation;
+import conceptual.FactorialAPI;
+import conceptual.FactorialAPIImplementation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
