@@ -13,14 +13,14 @@ public class DataStorageAPITest {
 
     @Test
     void smokeTestDataStorageAPI() {
-        DataStorageAPI api = Mockito.mock(DataStorageAPI.class);
-        Mockito.when(api.fetchComputation()).thenReturn(0L);
+        // DataStorageAPI api = Mockito.mock(DataStorageAPI.class);
+        // Mockito.when(api.fetchComputation()).thenReturn(0L);
 
-        long result = api.fetchComputation();
-        DataStorageAPI realAPI = new DataStorageAPIImplementation();
-
-        assertNotNull(realAPI);
-        assertEquals(0L, result);
+    	DataStorageAPI api = new DataStorageAPIImplementation();
+    	assertNotNull(api);
+    	
+    	long result = api.fetchComputation();
+        System.out.println("DataStorageAPI fetchComputation result: " + result);
         
     
 
