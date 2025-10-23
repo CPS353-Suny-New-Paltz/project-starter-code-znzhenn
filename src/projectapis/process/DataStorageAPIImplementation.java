@@ -1,12 +1,9 @@
-package process;
+package projectapis.process;
 
 import java.util.List;
-
-import process.DataStorageAPIImplementation;
-
 import java.util.ArrayList;
 import projectapis.ComputationStatus;
-import projectapis.DataStorageAPI;
+import projectapis.process.DataStorageAPIImplementation;
 import project.annotations.ProcessAPI;
 
 @ProcessAPI
