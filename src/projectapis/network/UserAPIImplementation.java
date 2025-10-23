@@ -1,8 +1,8 @@
-package network;
+package projectapis.network;
 
-import conceptual.FactorialAPIImplementation;
 import project.annotations.NetworkAPI;
 import projectapis.UserAPI;
+import projectapis.conceptual.FactorialAPIImplementation;
 
 @NetworkAPI
 public class UserAPIImplementation implements UserAPI {

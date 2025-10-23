@@ -1,4 +1,4 @@
-package conceptual;
+package projectapis.conceptual;
 
 import project.annotations.ConceptualAPI;
 import projectapis.FactorialAPI;
