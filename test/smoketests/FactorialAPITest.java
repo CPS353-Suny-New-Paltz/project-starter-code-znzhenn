@@ -2,11 +2,12 @@ package smoketests;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import conceptual.FactorialAPI;
+import conceptual.FactorialAPIImplementation;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import projectapis.conceptual.FactorialAPI;
-import projectapis.conceptual.FactorialAPIImplementation;
 
 public class FactorialAPITest {
 
