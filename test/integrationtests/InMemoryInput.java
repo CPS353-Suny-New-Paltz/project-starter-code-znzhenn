@@ -12,4 +12,9 @@ public class InMemoryInput {
     public List<Integer> getIntegers() {
         return integers;
     }
+
+	public List<Integer> getInput() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
