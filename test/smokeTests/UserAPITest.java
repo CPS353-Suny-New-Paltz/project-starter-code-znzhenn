@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import projectapis.network.UserAPI;
+import projectapis.network.UserAPIImplementation;
 
 
 public class UserAPITest {
@@ -13,8 +14,11 @@ public class UserAPITest {
 	void smokeTestUSerAPI() {
 		UserAPI api = Mockito.mock(UserAPI.class);
 		Mockito.when(api.executeComputation()).thenReturn(40L);
-		
 		long result = api.executeComputation();
+		
+		assertEquals(40L, result);
+		
+		new UserAPIImplementation();
 		
 		/* not implemented methods
 		void setInput(String input);
@@ -26,9 +30,7 @@ public class UserAPITest {
 		long executeComputation();
 		long fetchFactorialOfSum();
 		long fetchExistingResult(); */
-		
-		
-		assertEquals(40L, result);
+	
 		
 	}
 	

@@ -6,20 +6,20 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import projectapis.process.DataStorageAPI;
+import projectapis.process.DataStorageAPIImplementation;
 
 public class DataStorageAPITest {
 
     @Test
     void smokeTestConceptualAPI() {
         DataStorageAPI api = Mockito.mock(DataStorageAPI.class);
-
-        // Mock a method for the smoke test
         Mockito.when(api.fetchComputation()).thenReturn(0L);
 
         long result = api.fetchComputation();
 
         assertNotNull(api);
         assertEquals(0L, result);
+        new DataStorageAPIImplementation();
 
         /* not implemented methods
          //load integers
