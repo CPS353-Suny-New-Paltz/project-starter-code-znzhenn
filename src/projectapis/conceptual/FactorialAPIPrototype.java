@@ -1,4 +1,4 @@
-package projectapis;
+package projectapis.conceptual;
 
 import project.annotations.ConceptualAPIPrototype;
 

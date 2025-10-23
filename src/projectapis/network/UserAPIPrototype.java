@@ -1,4 +1,4 @@
-package projectapis;
+package projectapis.network;
 
 import project.annotations.NetworkAPIPrototype;
 

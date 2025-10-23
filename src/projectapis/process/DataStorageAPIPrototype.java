@@ -1,8 +1,9 @@
-package projectapis;
+package projectapis.process;
 
 import java.util.List;
 import java.util.Arrays;
 import project.annotations.ProcessAPIPrototype;
+import projectapis.ComputationStatus;
 
 public class DataStorageAPIPrototype {
 

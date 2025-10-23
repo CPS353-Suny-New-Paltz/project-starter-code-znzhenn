@@ -1,8 +1,9 @@
 // process api
-package projectapis;
+package projectapis.process;
 import java.util.List;
 
 import project.annotations.ProcessAPI;
+import projectapis.ComputationStatus;
 
 @ProcessAPI
 public interface DataStorageAPI {
@@ -18,5 +19,11 @@ public interface DataStorageAPI {
     
     //check to see if it even exists (way to track)
     ComputationStatus getComputationStatus();
+
+	String loadData();
+
+	void saveData(String data);
+
+	void saveComputation();
     
 }
