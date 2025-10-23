@@ -5,21 +5,25 @@ import project.annotations.ConceptualAPI;
 @ConceptualAPI
 public class FactorialAPIImplementation implements FactorialAPI {
 
-    @Override
-    public long factorialOfSum() {
-        // Stub implementation
-        return 0;
-    }
-
+	public FactorialAPIImplementation() {
+		
+	}
+	
     @Override
     public int computeFactorial(int n) {
-        // Stub implementation
-        return 0;
+    	int result = 1;
+    	for (int i = 2; i <= n; i++) result *= i;
+        return result;
     }
-
+   
     @Override
     public long computeDigitFactorialSum(int number) {
-        // Stub implementation
-        return 0;
+        long sum = 0;
+        while (number > 0) {
+            int digit = number % 10;
+            sum += computeFactorial(digit);
+            number /= 10;
+        }
+        return sum;
     }
 }
