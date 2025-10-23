@@ -6,7 +6,7 @@ import project.annotations.ProcessAPI;
 
 @ProcessAPI
 public class DataStorageAPIImplementation implements DataStorageAPI {
-
+	
     @Override
     public void saveData(String data) {
         System.out.println("Saving data: " + data);

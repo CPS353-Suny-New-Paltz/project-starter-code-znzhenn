@@ -4,7 +4,7 @@ import project.annotations.NetworkAPI;
 
 @NetworkAPI
 public class UserAPIImplementation implements UserAPI {
-
+	
 	@Override
 	public void setInput(String input) {
 		// TODO Auto-generated method stub
