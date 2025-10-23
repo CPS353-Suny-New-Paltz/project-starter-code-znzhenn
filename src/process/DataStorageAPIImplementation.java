@@ -1,11 +1,13 @@
-package projectapis.process;
+package process;
 
 import java.util.List;
+
+import process.DataStorageAPI;
+import process.DataStorageAPIImplementation;
+
 import java.util.ArrayList;
 import projectapis.ComputationStatus;
 import project.annotations.ProcessAPI;
-import projectapis.process.DataStorageAPI;
-import projectapis.process.DataStorageAPIImplementation;
 
 @ProcessAPI
 public class DataStorageAPIImplementation implements DataStorageAPI {
