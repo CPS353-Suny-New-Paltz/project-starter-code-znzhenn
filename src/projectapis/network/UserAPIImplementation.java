@@ -1,13 +1,19 @@
 package projectapis.network;
 
 import project.annotations.NetworkAPI;
+import projectapis.conceptual.FactorialAPIImplementation;
 
 @NetworkAPI
 public class UserAPIImplementation implements UserAPI {
 	
+	private String input;
+	public UserAPIImplementation() {
+		
+	}
+	
 	@Override
 	public void setInput(String input) {
-		// TODO Auto-generated method stub
+		this.input = input;
 		
 	}
 
@@ -25,20 +31,22 @@ public class UserAPIImplementation implements UserAPI {
 
 	@Override
 	public long executeComputation() {
-		// TODO Auto-generated method stub
-		return 0;
+		if (input == null || input.isEmpty()) {
+			return 0;
+		}
+        int number = Integer.parseInt(input);
+        FactorialAPIImplementation factorialAPI = new FactorialAPIImplementation();
+        return factorialAPI.computeDigitFactorialSum(number);
 	}
 
 	@Override
 	public long fetchFactorialOfSum() {
-		// TODO Auto-generated method stub
-		return 0;
+		return executeComputation();
 	}
 
 	@Override
 	public long fetchExistingResult() {
-		// TODO Auto-generated method stub
-		return 0;
+		return executeComputation();
 	}
 
 }
