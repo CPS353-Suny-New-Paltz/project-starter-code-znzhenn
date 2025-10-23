@@ -3,8 +3,8 @@ package smoketests;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import process.DataStorageAPI;
 import process.DataStorageAPIImplementation;
+import projectapis.DataStorageAPI;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;

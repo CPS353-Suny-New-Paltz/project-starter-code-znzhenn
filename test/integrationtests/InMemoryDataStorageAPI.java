@@ -1,12 +1,10 @@
 package integrationtests;
 
 import java.util.List;
-
-import process.DataStorageAPI;
-
 import java.util.ArrayList;
 
 import projectapis.ComputationStatus;
+import projectapis.DataStorageAPI;
 
 public class InMemoryDataStorageAPI implements DataStorageAPI {
 
