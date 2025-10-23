@@ -13,14 +13,23 @@ public class FactorialAPITest {
 
     @Test
     void smokeTestFactorialAPI() {
-        FactorialAPI api = Mockito.mock(FactorialAPI.class);
+        
+    	/* mock objects
+    	FactorialAPI api = Mockito.mock(FactorialAPI.class);
         Mockito.when(api.computeFactorial(5)).thenReturn(120);
         long result = api.computeFactorial(5);
 
         assertEquals(120, result);
         
         FactorialAPI realAPI = new FactorialAPIImplementation();
-        assertNotNull(api);
+        assertNotNull(api); */
+    	
+    	FactorialAPI api = new FactorialAPIImplementation();
+    	assertNotNull(api);
+    	
+    	long sum = api.computeDigitFactorialSum(247);
+        System.out.println("Sum of factorials of 247 digits: " + sum);
+    	
         
         
     

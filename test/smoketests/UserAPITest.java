@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class UserAPITest {
 	@Test
 	void smokeTestUSerAPI() {
+		/* Mock objects bad
 		UserAPI api = Mockito.mock(UserAPI.class);
 		Mockito.when(api.executeComputation()).thenReturn(40L);
 		
@@ -21,7 +22,13 @@ public class UserAPITest {
 		assertEquals(40L, result);
 		
 		UserAPI realAPI = new UserAPIImplementation();
-		assertNotNull(realAPI);
+		assertNotNull(realAPI); */
+		
+		UserAPI api = new UserAPIImplementation();
+		assertNotNull(api);
+		
+		long result = api.executeComputation();
+        System.out.println("UserAPI execution result: " + result);
 		
 		/* not implemented methods
 		void setInput(String input);
