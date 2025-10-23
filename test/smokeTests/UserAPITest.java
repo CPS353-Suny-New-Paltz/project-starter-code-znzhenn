@@ -11,14 +11,16 @@ import projectapis.network.UserAPIImplementation;
 
 public class UserAPITest {
 	@Test
-	void smokeTestUSerAPI() {
+	void smokeTestNetworkAPI() {
 		UserAPI api = Mockito.mock(UserAPI.class);
 		Mockito.when(api.executeComputation()).thenReturn(40L);
+		
 		long result = api.executeComputation();
 		
 		assertEquals(40L, result);
 		
-		new UserAPIImplementation();
+		UserAPI realAPI = new UserAPIImplementation();
+		assertNotNull(realAPI);
 		
 		/* not implemented methods
 		void setInput(String input);

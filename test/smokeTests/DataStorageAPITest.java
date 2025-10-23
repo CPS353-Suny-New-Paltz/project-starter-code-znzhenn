@@ -11,15 +11,17 @@ import projectapis.process.DataStorageAPIImplementation;
 public class DataStorageAPITest {
 
     @Test
-    void smokeTestConceptualAPI() {
+    void smokeTestDataStorageAPI() {
         DataStorageAPI api = Mockito.mock(DataStorageAPI.class);
         Mockito.when(api.fetchComputation()).thenReturn(0L);
 
         long result = api.fetchComputation();
+        DataStorageAPI realAPI = new DataStorageAPIImplementation();
 
-        assertNotNull(api);
+        assertNotNull(realAPI);
         assertEquals(0L, result);
-        new DataStorageAPIImplementation();
+        
+    
 
         /* not implemented methods
          //load integers

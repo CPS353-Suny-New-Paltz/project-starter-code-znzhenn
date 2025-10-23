@@ -18,7 +18,7 @@ public class FactorialAPITest {
 
         assertEquals(120, result);
         
-        new projectapis.conceptual.FactorialAPIImplementation();
+        FactorialAPI realAPI = new FactorialAPIImplementation();
         assertNotNull(api);
         
         
