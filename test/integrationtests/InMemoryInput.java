@@ -14,7 +14,7 @@ public class InMemoryInput {
     }
 
 	public List<Integer> getInput() {
-		// TODO Auto-generated method stub
-		return null;
+		return integers;
 	}
+
 }
