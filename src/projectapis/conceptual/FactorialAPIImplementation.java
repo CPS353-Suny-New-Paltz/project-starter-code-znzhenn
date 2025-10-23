@@ -11,7 +11,9 @@ public class FactorialAPIImplementation implements FactorialAPI {
 	
     @Override
     public int computeFactorial(int n) {
-    	if (n < 0) throw new IllegalArgumentException("n must be >= 0");
+    	if (n < 0) {
+    		throw new IllegalArgumentException("n must be >= 0");
+    	}
         int result = 1;
         for (int i = 2; i <= n; i++) {
             result *= i;
