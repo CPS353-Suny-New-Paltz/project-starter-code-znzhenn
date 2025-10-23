@@ -8,31 +8,27 @@ import project.annotations.ProcessAPI;
 @ProcessAPI
 public class DataStorageAPIImplementation implements DataStorageAPI {
 
-    private List<Long> saveComputation = new ArrayList<>();
+    private List<Long> savedResults = new ArrayList<>();
     private boolean computationDone = false;
     private String savedData = "";
 
     public DataStorageAPIImplementation() { }
 
     @Override
-    public void saveData(String data) {
-        savedData = data;
-        System.out.println("Saving data: " + data);
+    public List<Integer> loadIntegers(String inputSource, String delimiter) {
+        return new ArrayList<>(); // minimal stub
     }
 
     @Override
-    public String loadData() {
-        return savedData.isEmpty() ? "Loaded data" : savedData;
-    }
-
-    @Override
-    public void saveComputation() {
+    public void storeResults(String outputSource, List<Long> results) {
+        savedResults.clear();
+        savedResults.addAll(results);
         computationDone = true;
     }
 
     @Override
     public long fetchComputation() {
-        return saveComputation.isEmpty() ? 0 : saveComputation.get(0);
+        return savedResults.isEmpty() ? 0L : savedResults.get(0);
     }
 
     @Override
@@ -41,15 +37,12 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
     }
 
     @Override
-    public List<Integer> loadIntegers(String inputSource, String delimiter) {
-        return new ArrayList<>();
+    public String loadData() {
+        return savedData;
     }
 
     @Override
-    public void storeResults(String outputSource, List<Long> results) {
-        saveComputation.clear();
-        saveComputation.addAll(results);
+    public void saveComputation() {
         computationDone = true;
-        results.forEach(r -> System.out.println("Result: " + r));
     }
 }

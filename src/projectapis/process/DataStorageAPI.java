@@ -1,30 +1,27 @@
-// process api
-
 package projectapis.process;
+
 import java.util.List;
 import projectapis.ComputationStatus;
-
 import project.annotations.ProcessAPI;
 
 @ProcessAPI
 public interface DataStorageAPI {
-	
-	//load integers
-	List<Integer> loadIntegers(String inputSource, String delimiter);
-	
-	//saving the result
-	void storeResults(String outputSource, List<Long> results);
 
-    //fetching the result 
+    //load list of ints
+    List<Integer> loadIntegers(String inputSource, String delimiter);
+
+    //store results
+    void storeResults(String outputSource, List<Long> results);
+
+    //fetch computation
     long fetchComputation();
-    
-    //check to see if it even exists (way to track)
+
+    // check if it exists
     ComputationStatus getComputationStatus();
 
-	String loadData();
+    //load data
+    String loadData();
 
-	void saveData(String data);
-
-	void saveComputation();
-    
+    //mark saved
+    void saveComputation();
 }

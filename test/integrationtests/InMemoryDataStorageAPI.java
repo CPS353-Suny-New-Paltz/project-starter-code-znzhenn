@@ -49,11 +49,6 @@ public class InMemoryDataStorageAPI implements DataStorageAPI {
     }
 
     @Override
-    public void saveData(String data) {
-        output.write(data);
-    }
-
-    @Override
     public void saveComputation() {
         computationDone = true;
     }
