@@ -1,4 +1,4 @@
-package smokeTests;
+package smoketests;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -11,7 +11,7 @@ import projectapis.network.UserAPIImplementation;
 
 public class UserAPITest {
 	@Test
-	void smokeTestNetworkAPI() {
+	void smokeTestUSerAPI() {
 		UserAPI api = Mockito.mock(UserAPI.class);
 		Mockito.when(api.executeComputation()).thenReturn(40L);
 		

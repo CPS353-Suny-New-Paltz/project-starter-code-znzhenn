@@ -1,11 +1,14 @@
-package integrationTests;
+package integrationtests;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import projectapis.conceptual.*;
-import projectapis.network.*;
-import projectapis.process.*;
+import projectapis.conceptual.FactorialAPIImplementation;
+import projectapis.conceptual.FactorialAPI;
+import projectapis.network.UserAPIImplementation;
+import projectapis.network.UserAPI;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;

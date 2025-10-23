@@ -1,4 +1,4 @@
-package smokeTests;
+package smoketests;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
