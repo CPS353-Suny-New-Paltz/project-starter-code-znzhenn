@@ -12,7 +12,9 @@ public class FactorialAPIImplementation implements FactorialAPI {
     @Override
     public int computeFactorial(int n) {
     	int result = 1;
-    	for (int i = 2; i <= n; i++) result *= i;
+    	for (int i = 2; i <= n; i++) {
+    		result *= i;
+    	}
         return result;
     }
    

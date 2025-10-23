@@ -31,7 +31,9 @@ public class UserAPIImplementation implements UserAPI {
 
 	@Override
 	public long executeComputation() {
-		if (input == null || input.isEmpty()) return 0;
+		if (input == null || input.isEmpty()) {
+			return 0;
+		}
         int number = Integer.parseInt(input);
         FactorialAPIImplementation factorialAPI = new FactorialAPIImplementation();
         return factorialAPI.computeDigitFactorialSum(number);
