@@ -10,7 +10,7 @@ import projectapis.process.DataStorageAPIImplementation;
 @ProcessAPI
 public class DataStorageAPIImplementation implements DataStorageAPI {
 	
-	public void DataStorageAPIImplemetation() {
+	public void DataStorageAPIImplementation() {
 		
 	}
 	
