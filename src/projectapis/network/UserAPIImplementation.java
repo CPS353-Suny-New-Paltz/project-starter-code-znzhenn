@@ -7,6 +7,8 @@ import projectapis.conceptual.FactorialAPIImplementation;
 public class UserAPIImplementation implements UserAPI {
 	
 	private String input;
+	private String output;
+	
 	public UserAPIImplementation() {
 		
 	}
@@ -19,7 +21,7 @@ public class UserAPIImplementation implements UserAPI {
 
 	@Override
 	public void setOutput(String output) {
-		// TODO Auto-generated method stub
+		this.output = output;
 		
 	}
 
