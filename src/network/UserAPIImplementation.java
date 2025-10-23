@@ -2,6 +2,7 @@ package network;
 
 import conceptual.FactorialAPIImplementation;
 import project.annotations.NetworkAPI;
+import projectapis.UserAPI;
 
 @NetworkAPI
 public class UserAPIImplementation implements UserAPI {

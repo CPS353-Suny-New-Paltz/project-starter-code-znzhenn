@@ -1,6 +1,7 @@
 package conceptual;
 
 import project.annotations.ConceptualAPI;
+import projectapis.FactorialAPI;
 
 @ConceptualAPI
 public class FactorialAPIImplementation implements FactorialAPI {
