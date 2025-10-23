@@ -1,6 +1,6 @@
 // process api
 
-package projectapis;
+package projectapis.process;
 import java.util.List;
 
 import project.annotations.ProcessAPI;

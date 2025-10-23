@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import projectapis.ComputationStatus;
-import projectapis.DataStorageAPI;
+import projectapis.process.DataStorageAPI;
 
 public class InMemoryDataStorageAPI implements DataStorageAPI {
 

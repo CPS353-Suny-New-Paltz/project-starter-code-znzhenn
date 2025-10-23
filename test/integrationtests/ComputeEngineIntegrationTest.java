@@ -2,11 +2,11 @@ package integrationtests;
 
 import org.junit.jupiter.api.Test;
 
-import projectapis.FactorialAPI;
+import projectapis.conceptual.FactorialAPI;
 import projectapis.conceptual.FactorialAPIImplementation;
-import projectapis.UserAPI;
+import projectapis.network.UserAPI;
 import projectapis.network.UserAPIImplementation;
-import projectapis.DataStorageAPI;
+import projectapis.process.DataStorageAPI;
 import projectapis.process.DataStorageAPIImplementation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

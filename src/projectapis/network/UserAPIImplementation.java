@@ -1,7 +1,6 @@
 package projectapis.network;
 
 import project.annotations.NetworkAPI;
-import projectapis.UserAPI;
 import projectapis.conceptual.FactorialAPIImplementation;
 
 @NetworkAPI
