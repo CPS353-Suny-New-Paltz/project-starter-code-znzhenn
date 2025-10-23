@@ -1,11 +1,18 @@
 package projectapis.process;
 
 import java.util.List;
+import java.util.ArrayList;
 import projectapis.ComputationStatus;
 import project.annotations.ProcessAPI;
+import projectapis.process.DataStorageAPI;
+import projectapis.process.DataStorageAPIImplementation;
 
 @ProcessAPI
 public class DataStorageAPIImplementation implements DataStorageAPI {
+	
+	public DataStorageAPIImplementation() {
+		
+	}
 	
     @Override
     public void saveData(String data) {
@@ -29,16 +36,16 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 
     @Override
     public ComputationStatus getComputationStatus() {
-        return null;
+    	return ComputationStatus.NOT_EXISTS;
     }
 
     @Override
     public List<Integer> loadIntegers(String inputSource, String delimiter) {
-        return null;
+    	return new ArrayList<>(); // empty list for tests
     }
 
     @Override
     public void storeResults(String outputSource, List<Long> results) {
-        // Stub implementation
+    	results.forEach(r -> System.out.println("Result: " + r));
     }
 }
