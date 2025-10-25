@@ -29,7 +29,7 @@ import project.annotations.ProcessAPIPrototype;
  * could easily use the API to do everything they need to.
  */
 public class Checkpoint2TestSuite {
-	
+
 	@ParameterizedTest(name = ParameterizedTest.ARGUMENTS_PLACEHOLDER)
 	@MethodSource("providePrototypeParams")
 	public void checkPrototypesExist(Class<? extends Annotation> apiAnnotation, 
@@ -57,7 +57,7 @@ public class Checkpoint2TestSuite {
 					}
 				}
 			}
-			
+
 		}
 		if (numPrototypesFound != 1) {
 			errors.add("No (or more than one) class method with the " + prototypeAnnotation.getSimpleName() + " annotation was found in 'src'");
@@ -74,12 +74,12 @@ public class Checkpoint2TestSuite {
 	            Arguments.of(NetworkAPI.class, NetworkAPIPrototype.class)
 	    );
 	}
-	
+
 	@ParameterizedTest(name = ParameterizedTest.ARGUMENTS_PLACEHOLDER)
 	@ValueSource(classes = {NetworkAPI.class, ProcessAPI.class, ConceptualAPI.class })
 	public void checkAnnotationsExist(Class<? extends Annotation> apiAnnotation) throws Exception {
 		int numApisFound = 0;
-		
+
 		for (Class<?> clazz : Utils.loadAllClasses()) {
 			if (clazz.isInterface()) {
 				if (clazz.isAnnotationPresent(apiAnnotation)) {
@@ -87,9 +87,9 @@ public class Checkpoint2TestSuite {
 				}
 			}
 		}
-		
+
 		List<String> errors = new ArrayList<>();
-		
+
 		if (numApisFound != 1) {
 			errors.add("No (or more than one) interface found with annotation " + apiAnnotation.getSimpleName() + " in 'src'");
 			errors.add("Keep in mind that all APIs must be interfaces (not classes), and that each API annotation"
@@ -100,5 +100,5 @@ public class Checkpoint2TestSuite {
 		}
 	}
 
-	
+
 }
