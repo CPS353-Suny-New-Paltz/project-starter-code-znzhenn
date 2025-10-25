@@ -13,7 +13,7 @@ public class Utils {
         }
         return result;
     }
-    
+
     public static List<Class<?>> loadAllTestClasses() throws Exception {
         File rootDir = new File("test");
         List<Class<?>> result = new ArrayList<>();
