@@ -9,7 +9,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ProcessAPIPrototype {
 	// Marker annotation, should be applied to a method within a prototype class
-	
 
-	//looks to see if answer already exists (add later mayhaps)
+	// looks to see if answer already exists (add later mayhaps)
 }

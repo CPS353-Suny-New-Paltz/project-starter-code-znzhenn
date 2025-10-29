@@ -11,37 +11,34 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DataStorageAPITest {
 
-    @Test
-    void smokeTestDataStorageAPI() {
-        // DataStorageAPI api = Mockito.mock(DataStorageAPI.class);
-        // Mockito.when(api.fetchComputation()).thenReturn(0L);
+	@Test
+	void smokeTestDataStorageAPI() {
+		// DataStorageAPI api = Mockito.mock(DataStorageAPI.class);
+		// Mockito.when(api.fetchComputation()).thenReturn(0L);
 
-    	DataStorageAPI api = new DataStorageAPIImplementation();
-    	assertNotNull(api);
-    	
-    	long result = api.fetchComputation();
-        System.out.println("DataStorageAPI fetchComputation result: " + result);
-        
-    
+		DataStorageAPI api = new DataStorageAPIImplementation();
+		assertNotNull(api);
 
-        /* not implemented methods
-         //load integers
-         List<Integer> loadIntegers(String inputSource, String delimiter);
+		long result = api.fetchComputation();
+		System.out.println("DataStorageAPI fetchComputation result: " + result);
 
-         //saving the result
-         void storeResults(String outputSource, List<Long> results);
-
-         //fetching the result 
-         long fetchComputation();
-
-         //check to see if it even exists (way to track)
-         ComputationStatus getComputationStatus();
-
-         String loadData();
-
-         void saveData(String data);
-
-         void saveComputation(); 
-        */
-    }
+		/*
+		 * not implemented methods //load integers List<Integer> loadIntegers(String
+		 * inputSource, String delimiter);
+		 * 
+		 * //saving the result void storeResults(String outputSource, List<Long>
+		 * results);
+		 * 
+		 * //fetching the result long fetchComputation();
+		 * 
+		 * //check to see if it even exists (way to track) ComputationStatus
+		 * getComputationStatus();
+		 * 
+		 * String loadData();
+		 * 
+		 * void saveData(String data);
+		 * 
+		 * void saveComputation();
+		 */
+	}
 }
