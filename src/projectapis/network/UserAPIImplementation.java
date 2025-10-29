@@ -1,13 +1,19 @@
 package projectapis.network;
 
 import project.annotations.NetworkAPI;
+import project.annotations.ProcessAPI;
 import projectapis.conceptual.FactorialAPIImplementation;
+import projectapis.process.DataStorageAPIImplementation;
 
 @NetworkAPI
+@ProcessAPI
 public class UserAPIImplementation implements UserAPI {
 	
 	private String input;
 	private String output;
+	private String delimiter = ",";
+	private final DataStorageAPIImplementation dataStorage = new DataStorageAPIImplementation();
+	private final FactorialAPIImplementation factorialAPI = new FactorialAPIImplementation();
 	
 	public UserAPIImplementation() {
 		
