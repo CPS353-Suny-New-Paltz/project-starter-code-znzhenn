@@ -14,9 +14,12 @@ public interface UserAPI {
 	// not necessary in my computation
 	void setDelimiter(String delimiter);
 
+	//starts main computation
 	long executeComputation();
 
+	//fetches sum of digits
 	long fetchFactorialOfSum();
 
+	//fetches existing result
 	long fetchExistingResult();
 }

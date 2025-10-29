@@ -8,8 +8,9 @@ public interface FactorialAPI {
 	// doing the actual computation
 	long factorialOfSum(int number);
 
-	// necessary for the implementation
+	// computing factorial
 	int computeFactorial(int n);
 
+	//yoink each digit
 	long computeDigitFactorialSum(int number);
 }
