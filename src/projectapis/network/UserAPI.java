@@ -16,10 +16,7 @@ public interface UserAPI {
 
 	//starts main computation
 	long executeComputation();
-
-	//fetches sum of digits
-	long fetchFactorialOfSum();
-
+	
 	//fetches existing result
 	long fetchExistingResult();
 }
