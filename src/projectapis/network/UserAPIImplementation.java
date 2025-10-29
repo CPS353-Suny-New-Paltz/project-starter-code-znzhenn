@@ -2,7 +2,9 @@ package projectapis.network;
 
 import project.annotations.NetworkAPI;
 import project.annotations.ProcessAPI;
+import projectapis.conceptual.FactorialAPI;
 import projectapis.conceptual.FactorialAPIImplementation;
+import projectapis.process.DataStorageAPI;
 import projectapis.process.DataStorageAPIImplementation;
 
 import java.util.List;
@@ -15,8 +17,14 @@ public class UserAPIImplementation implements UserAPI {
 	private String input;
 	private String output;
 	private String delimiter = ",";
-	private final DataStorageAPIImplementation dataStorage = new DataStorageAPIImplementation();
-	private final FactorialAPIImplementation factorialAPI = new FactorialAPIImplementation();
+	
+	private final DataStorageAPI dataStorage;
+    private final FactorialAPI factorialAPI;
+
+    public UserAPIImplementation(DataStorageAPI dataStorage, FactorialAPI factorialAPI) {
+        this.dataStorage = dataStorage;
+        this.factorialAPI = factorialAPI;
+    }
 
 	@Override
 	public void setInput(String input) {
