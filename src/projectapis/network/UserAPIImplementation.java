@@ -50,8 +50,9 @@ public class UserAPIImplementation implements UserAPI {
 	public long executeComputation() {
 		// dataStorage to load numbers
 		List<Integer> numbers = dataStorage.loadIntegers(input, delimiter);
-		if (numbers.isEmpty())
-			return 0;
+		if (numbers.isEmpty()) {
+		    return 0;
+		}
 
 		long sum = 0;
 		for (int number : numbers) {
