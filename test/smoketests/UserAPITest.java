@@ -3,8 +3,10 @@ package smoketests;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import projectapis.conceptual.FactorialAPI;
 import projectapis.network.UserAPI;
 import projectapis.network.UserAPIImplementation;
+import projectapis.process.DataStorageAPI;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -23,7 +25,9 @@ public class UserAPITest {
 		 * UserAPI realAPI = new UserAPIImplementation(); assertNotNull(realAPI);
 		 */
 
-		UserAPI api = new UserAPIImplementation();
+		DataStorageAPI dataStorage = null;
+		FactorialAPI factorialAPI = null;
+		UserAPI api = new UserAPIImplementation(dataStorage, factorialAPI);
 		assertNotNull(api);
 
 		long result = api.executeComputation();

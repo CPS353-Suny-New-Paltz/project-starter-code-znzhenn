@@ -16,19 +16,22 @@ public class ManualTestingFramework {
 		// implementation of all 3 APIs
 		DataStorageAPIImplementation dataStorage = new DataStorageAPIImplementation();
         FactorialAPIImplementation factorialAPI = new FactorialAPIImplementation();
-        UserAPIImplementation userAPI = new UserAPIImplementation();
-		//
+        UserAPIImplementation userAPI = new UserAPIImplementation(dataStorage, factorialAPI);
+		
+        userAPI.setInput(INPUT);
+        userAPI.setOutput(OUTPUT);
+        userAPI.setDelimiter(",");
+
+        //
 		// TODO 2:
 		// Run a computation with an input file of <root project
 		// dir>/manualTestInput.txt and an output of <root project dir>/manualTestOutput.txt, with a delimiter of ','
 
         //execute
         long result = userAPI.executeComputation();
-        
-        //print result
         System.out.println("Computation result: " + result);
-        
-        //fetch stored results
+
+        //fetch result
         long fetched = userAPI.fetchExistingResult();
         System.out.println("Fetched existing result: " + fetched);
         
