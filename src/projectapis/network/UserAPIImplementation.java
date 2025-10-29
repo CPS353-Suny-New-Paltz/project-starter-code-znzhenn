@@ -3,10 +3,7 @@ package projectapis.network;
 import project.annotations.NetworkAPI;
 import project.annotations.ProcessAPI;
 import projectapis.conceptual.FactorialAPI;
-import projectapis.conceptual.FactorialAPIImplementation;
 import projectapis.process.DataStorageAPI;
-import projectapis.process.DataStorageAPIImplementation;
-
 import java.util.List;
 import java.util.ArrayList;
 
@@ -65,11 +62,6 @@ public class UserAPIImplementation implements UserAPI {
 		dataStorage.storeResults(output, results);
 
 		return sum;
-	}
-
-	@Override
-	public long fetchFactorialOfSum() {
-		return dataStorage.fetchComputation();
 	}
 
 	@Override
