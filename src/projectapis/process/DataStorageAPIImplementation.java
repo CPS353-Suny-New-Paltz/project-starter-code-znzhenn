@@ -72,6 +72,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
             System.out.println("Error writing results to file: " + outputSource);
             e.printStackTrace();
         }
+		}
 	}
 
 	//returns the first stored computation result
