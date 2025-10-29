@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ConceptualAPI {
 	// Marker annotation, should be applied to an interface type
-	
+
 }

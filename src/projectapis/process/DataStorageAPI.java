@@ -7,21 +7,21 @@ import project.annotations.ProcessAPI;
 @ProcessAPI
 public interface DataStorageAPI {
 
-    //load list of ints
-    List<Integer> loadIntegers(String inputSource, String delimiter);
+	// load list of ints
+	List<Integer> loadIntegers(String inputSource, String delimiter);
 
-    //store results
-    void storeResults(String outputSource, List<Long> results);
+	// store results
+	void storeResults(String outputSource, List<Long> results);
 
-    //fetch computation
-    long fetchComputation();
+	// fetch computation
+	long fetchComputation();
 
-    // check if it exists
-    ComputationStatus getComputationStatus();
+	// check if it exists
+	ComputationStatus getComputationStatus();
 
-    //load data
-    String loadData();
+	// load data
+	String loadData();
 
-    //mark saved
-    void saveComputation();
+	// mark saved
+	void saveComputation();
 }

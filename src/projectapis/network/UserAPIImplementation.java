@@ -11,24 +11,23 @@ import java.util.ArrayList;
 @NetworkAPI
 @ProcessAPI
 public class UserAPIImplementation implements UserAPI {
-	
+
 	private String input;
 	private String output;
 	private String delimiter = ",";
 	private final DataStorageAPIImplementation dataStorage = new DataStorageAPIImplementation();
 	private final FactorialAPIImplementation factorialAPI = new FactorialAPIImplementation();
 
-	
 	@Override
 	public void setInput(String input) {
 		this.input = input;
-		
+
 	}
 
 	@Override
 	public void setOutput(String output) {
 		this.output = output;
-		
+
 	}
 
 	@Override
@@ -36,26 +35,27 @@ public class UserAPIImplementation implements UserAPI {
 		if (delimiter != null && !delimiter.isEmpty()) {
 			this.delimiter = delimiter;
 		}
-		
+
 	}
-	
+
 	@Override
 	public long executeComputation() {
-		//dataStorage to load numbers
+		// dataStorage to load numbers
 		List<Integer> numbers = dataStorage.loadIntegers(input, delimiter);
-        if (numbers.isEmpty()) return 0;
+		if (numbers.isEmpty())
+			return 0;
 
-        long sum = 0;
-        for (int number : numbers) {
-            sum += factorialAPI.computeDigitFactorialSum(number);
-        }
+		long sum = 0;
+		for (int number : numbers) {
+			sum += factorialAPI.computeDigitFactorialSum(number);
+		}
 
-        // Store result in dataStorage
-        List<Long> results = new ArrayList<>();
-        results.add(sum);
-        dataStorage.storeResults(output, results);
+		// Store result in dataStorage
+		List<Long> results = new ArrayList<>();
+		results.add(sum);
+		dataStorage.storeResults(output, results);
 
-        return sum;
+		return sum;
 	}
 
 	@Override
