@@ -1,10 +1,7 @@
 package project.checkpointtests;
 
-import projectapis.network.UserAPI;
 import projectapis.network.UserAPIImplementation;
-import projectapis.conceptual.FactorialAPI;
 import projectapis.conceptual.FactorialAPIImplementation;
-import projectapis.process.DataStorageAPI;
 import projectapis.process.DataStorageAPIImplementation;
 
 
