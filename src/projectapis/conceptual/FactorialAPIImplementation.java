@@ -23,7 +23,7 @@ public class FactorialAPIImplementation implements FactorialAPI {
    
     @Override
     public long computeDigitFactorialSum(int number) {
-        long sum = 0;
+    	long sum = 0;
         int temp = number;
         while (temp > 0) {
             int digit = temp % 10;
@@ -34,8 +34,13 @@ public class FactorialAPIImplementation implements FactorialAPI {
     }
 
 	@Override
-	public long factorialOfSum() {
-		int number = 247;
-		return computeDigitFactorialSum(number);
+	public long factorialOfSum(int number) {
+	    int sumDigits = 0;
+	    int temp = number;
+	    while (temp > 0) {
+	        sumDigits += temp % 10;
+	        temp /= 10;
+	    }
+	    return computeFactorial(sumDigits);
 	}
 }
