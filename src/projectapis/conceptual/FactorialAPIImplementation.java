@@ -9,6 +9,7 @@ public class FactorialAPIImplementation implements FactorialAPI {
 
 	}
 
+	//computing individual factorial of a number
 	@Override
 	public int computeFactorial(int n) {
 		if (n < 0) {
@@ -21,6 +22,7 @@ public class FactorialAPIImplementation implements FactorialAPI {
 		return result;
 	}
 
+	// breaking down numbers into individual digits
 	@Override
 	public long computeDigitFactorialSum(int number) {
 		long sum = 0;
@@ -33,6 +35,7 @@ public class FactorialAPIImplementation implements FactorialAPI {
 		return sum;
 	}
 
+	// takes in a number, adds up digits, calculates the sum for a factorial
 	@Override
 	public long factorialOfSum(int number) {
 		int sumDigits = 0;
