@@ -63,7 +63,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 		
 		//write to file 
 		if (outputSource != null && !outputSource.isEmpty()) {
-			File file = new File (outputSource);
+			File file = new File(outputSource);
 			try (PrintWriter writer = new PrintWriter(file)){
 				for (Long result: results) {
 					writer.println(result);
