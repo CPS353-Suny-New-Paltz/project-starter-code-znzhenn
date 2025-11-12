@@ -18,7 +18,7 @@ public class ManualTestingFramework {
 		// implementation of all 3 APIs
 		DataStorageAPIImplementation dataStorage = new DataStorageAPIImplementation();
         FactorialAPIImplementation factorialAPI = new FactorialAPIImplementation();
-        UserAPIImplementation userAPI = new UserAPIImplementation();
+        UserAPIImplementation userAPI = new UserAPIImplementation(dataStorage, factorialAPI);
 		
         
         //configure userAPI
