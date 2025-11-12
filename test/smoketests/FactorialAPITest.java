@@ -1,6 +1,7 @@
 package smoketests;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import org.mockito.Mockito;
 
 import projectapis.conceptual.FactorialAPI;
@@ -27,7 +28,7 @@ public class FactorialAPITest {
 		assertNotNull(api);
 
 		long sum = api.computeDigitFactorialSum(247);
-		assertEqual(9L, sum, "should fail");
+		assertEquals(9L, sum, "should fail");
 		
 		//System.out.println("Sum of factorials of 247 digits: " + sum);
 
@@ -38,10 +39,5 @@ public class FactorialAPITest {
 		 * computeDigitFactorialSum(int number);
 		 */
 
-	}
-
-	private void assertEqual(long l, long sum, String string) {
-		// TODO Auto-generated method stub
-		
 	}
 }
