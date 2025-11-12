@@ -10,6 +10,12 @@ import projectapis.conceptual.FactorialAPIImplementation;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class FactorialAPITest {
+	
+	public static void main(String[] args) {
+        FactorialAPI api = new FactorialAPIImplementation();
+        long sum = api.computeDigitFactorialSum(247);
+        System.out.println("Sum of factorials of 247 digits: " + sum);
+    }
 
 	@Test
 	void smokeTestFactorialAPI() {

@@ -25,6 +25,7 @@ dependencies {
     testImplementation('org.junit.jupiter:junit-jupiter-params:5.10.2')
     testImplementation('org.mockito:mockito-core:5.10.0')
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.2'
     implementation('com.google.code.gson:gson:2.13.1')
     implementation 'fr.inria.gforge.spoon:spoon-core:11.2.0'
 	
