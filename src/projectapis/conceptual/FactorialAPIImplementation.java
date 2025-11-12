@@ -8,7 +8,7 @@ public class FactorialAPIImplementation implements FactorialAPI {
 	public FactorialAPIImplementation() {
 
 	}
-
+	/*
 	//computing individual factorial of a number
 	@Override
 	public int computeFactorial(int n) {
@@ -20,21 +20,24 @@ public class FactorialAPIImplementation implements FactorialAPI {
 			result *= i;
 		}
 		return result;
-	}
+	}*/
 
 	// breaking down numbers into individual digits
 	@Override
 	public long computeDigitFactorialSum(int number) {
-		long sum = 0;
+		
+		return 0;
+		/* long sum = 0;
 		int temp = number;
 		while (temp > 0) {
 			int digit = temp % 10;
 			sum += computeFactorial(digit);
 			temp /= 10;
 		}
-		return sum;
+		return sum; */
 	}
-
+	
+	/*
 	// takes in a number, adds up digits, calculates the sum for a factorial
 	@Override
 	public long factorialOfSum(int number) {
@@ -45,5 +48,5 @@ public class FactorialAPIImplementation implements FactorialAPI {
 			temp /= 10;
 		}
 		return computeFactorial(sumDigits);
-	}
+	}*/
 }
