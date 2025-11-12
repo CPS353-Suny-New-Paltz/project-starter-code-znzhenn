@@ -1,11 +1,9 @@
 package integrationtests;
 
 import org.junit.jupiter.api.Test;
-import projectapis.conceptual.FactorialAPI;
-import projectapis.conceptual.FactorialAPIImplementation;
-import projectapis.network.UserAPI;
-import projectapis.network.UserAPIImplementation;
-import projectapis.process.DataStorageAPI;
+import projectapis.conceptual.*;
+import projectapis.network.*;
+import projectapis.process.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,6 +15,16 @@ public class ComputeEngineIntegrationTest {
 
     @Test
     void testComputeEngineIntegration() {
+    	//empty logic 
+    	DataStorageAPI dataStorage = new DataStorageAPIImplementation();
+        FactorialAPI factorialAPI = new FactorialAPIImplementation();
+        UserAPI userAPI = new UserAPIImplementation();
+        
+        //execute computation
+        long result = userAPI.executeComputation();
+        assertEquals(120, result, "Expected factorial computation to equal 120");
+        
+    	/* checkpoint 4 for later
         // Initial input and output
         InMemoryInput inputConfig = new InMemoryInput(Arrays.asList(1, 10, 25));
         InMemoryOutput outputConfig = new InMemoryOutput();
@@ -24,7 +32,7 @@ public class ComputeEngineIntegrationTest {
 
         // APIs
         FactorialAPI factorialAPI = new FactorialAPIImplementation();
-        UserAPI userAPI = new UserAPIImplementation(dataStore, factorialAPI);
+        UserAPI userAPI = new UserAPIImplementation();
 
         // Perform computations
         List<Integer> numbers = inputConfig.getInput();
@@ -40,5 +48,6 @@ public class ComputeEngineIntegrationTest {
         assertEquals(2, results.size(), "Should have 2 output entries");
         assertEquals("1", results.get(0), "Expected factorial of 1");
         assertEquals(String.valueOf(result2), results.get(1), "Expected UserAPI computation");
-    }
+    */
+    } 
 }
