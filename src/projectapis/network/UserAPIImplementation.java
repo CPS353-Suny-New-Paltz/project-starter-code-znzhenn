@@ -40,11 +40,10 @@ public class UserAPIImplementation implements UserAPI {
 
 	@Override
 	public void setDelimiter(String delimiter) {
-		this.delimiter = delimiter;
-		/* implement later
+		
 		if (delimiter != null && !delimiter.isEmpty()) {
 			this.delimiter = delimiter;
-		}*/
+		}
 
 	}
 

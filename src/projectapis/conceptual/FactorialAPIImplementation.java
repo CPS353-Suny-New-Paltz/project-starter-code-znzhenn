@@ -8,8 +8,6 @@ public class FactorialAPIImplementation implements FactorialAPI {
 	public FactorialAPIImplementation() {
 
 	}
-	/*
-	//computing individual factorial of a number
 	@Override
 	public int computeFactorial(int n) {
 		if (n < 0) {
@@ -20,21 +18,20 @@ public class FactorialAPIImplementation implements FactorialAPI {
 			result *= i;
 		}
 		return result;
-	}*/
+	}
 
 	// breaking down numbers into individual digits
 	@Override
 	public long computeDigitFactorialSum(int number) {
 		
-		return 0;
-		/* long sum = 0;
+		long sum = 0;
 		int temp = number;
 		while (temp > 0) {
 			int digit = temp % 10;
 			sum += computeFactorial(digit);
 			temp /= 10;
 		}
-		return sum; */
+		return sum;
 	}
 	
 	/*

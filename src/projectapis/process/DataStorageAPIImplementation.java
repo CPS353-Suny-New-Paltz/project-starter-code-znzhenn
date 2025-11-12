@@ -81,8 +81,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	//returns the first stored computation result
 	@Override
 	public long fetchComputation() {
-		return 0;
-		//return savedResults.isEmpty() ? 0L : savedResults.get(0);
+		return savedResults.isEmpty() ? 0L : savedResults.get(0);
 	}
 
 	@Override
@@ -92,12 +91,12 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 
 	@Override
 	public String loadData() {
-		//return savedData;
-		return "";
+		return savedData;
+		
 	}
 
 	@Override
 	public void saveComputation() {
-		//status = ComputationStatus.EXISTS;
+		status = ComputationStatus.EXISTS;
 	}
 }
