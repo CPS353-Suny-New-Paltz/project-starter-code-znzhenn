@@ -3,10 +3,9 @@ package smoketests;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import projectapis.conceptual.FactorialAPI;
-import projectapis.network.UserAPI;
-import projectapis.network.UserAPIImplementation;
-import projectapis.process.DataStorageAPI;
+import projectapis.conceptual.*;
+import projectapis.network.*;
+import projectapis.process.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -25,13 +24,28 @@ public class UserAPITest {
 		 * UserAPI realAPI = new UserAPIImplementation(); assertNotNull(realAPI);
 		 */
 
+		
+		//empty implementations
+		DataStorageAPI dataStorage = new DataStorageAPIImplementation();
+        FactorialAPI factorialAPI = new FactorialAPIImplementation();
+        UserAPI api = new UserAPIImplementation();
+        
+        assertNotNull(api, "UserAPI should not be null");
+        
+        api.setInput("testInput.txt");
+        api.setOutput("testOutput.txt");
+        long result = api.executeComputation();
+        
+        assertEquals(100L, result, "shoould fail");
+        
+		/*
 		DataStorageAPI dataStorage = null;
 		FactorialAPI factorialAPI = null;
-		UserAPI api = new UserAPIImplementation(dataStorage, factorialAPI);
+		UserAPI api = new UserAPIImplementation();
 		assertNotNull(api);
 
 		long result = api.executeComputation();
-		System.out.println("UserAPI execution result: " + result);
+		System.out.println("UserAPI execution result: " + result); */
 
 		/*
 		 * not implemented methods void setInput(String input); void setOutput(String
