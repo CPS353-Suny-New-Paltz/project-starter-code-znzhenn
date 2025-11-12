@@ -23,6 +23,8 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 
 	 @Override
 	 public List<Integer> loadIntegers(String inputSource, String delimiter) {
+		 return new ArrayList<>();
+		 /*
 		 loadedNumbers.clear();
 		 File file = new File(inputSource);
 		 if (!file.exists()) {
@@ -51,12 +53,13 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 
 	        status = loadedNumbers.isEmpty() ? ComputationStatus.NOT_EXISTS : ComputationStatus.EXISTS;
 	        savedData = String.join(delimiter, loadedNumbers.stream().map(String::valueOf).toList());
-	        return loadedNumbers;
+	        return loadedNumbers; */
 	   }
 	 
 	// store results
 	@Override
 	public void storeResults(String outputSource, List<Long> results) {
+		/*
 		savedResults.clear();
 		savedResults.addAll(results);
 		status = ComputationStatus.EXISTS;
@@ -72,27 +75,29 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
             System.out.println("Error writing results to file: " + outputSource);
             e.printStackTrace();
         }
-		}
+		}*/
 	}
 
 	//returns the first stored computation result
 	@Override
 	public long fetchComputation() {
-		return savedResults.isEmpty() ? 0L : savedResults.get(0);
+		return 0;
+		//return savedResults.isEmpty() ? 0L : savedResults.get(0);
 	}
 
 	@Override
 	public ComputationStatus getComputationStatus() {
-		return status;
+		return ComputationStatus.NOT_EXISTS;
 	}
 
 	@Override
 	public String loadData() {
-		return savedData;
+		//return savedData;
+		return "";
 	}
 
 	@Override
 	public void saveComputation() {
-		status = ComputationStatus.EXISTS;
+		//status = ComputationStatus.EXISTS;
 	}
 }

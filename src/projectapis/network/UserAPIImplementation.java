@@ -2,10 +2,8 @@ package projectapis.network;
 
 import project.annotations.NetworkAPI;
 import project.annotations.ProcessAPI;
-import projectapis.conceptual.FactorialAPI;
-import projectapis.conceptual.FactorialAPIImplementation;
-import projectapis.process.DataStorageAPI;
-import projectapis.process.DataStorageAPIImplementation;
+import projectapis.conceptual.*;
+import projectapis.process.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -18,13 +16,14 @@ public class UserAPIImplementation implements UserAPI {
 	private String output;
 	private String delimiter = ",";
 	
+	/*
 	private final DataStorageAPI dataStorage;
     private final FactorialAPI factorialAPI;
 
     public UserAPIImplementation(DataStorageAPI dataStorage, FactorialAPI factorialAPI) {
         this.dataStorage = dataStorage;
         this.factorialAPI = factorialAPI;
-    }
+    }*/
 
 	@Override
 	public void setInput(String input) {
@@ -40,15 +39,19 @@ public class UserAPIImplementation implements UserAPI {
 
 	@Override
 	public void setDelimiter(String delimiter) {
+		this.delimiter = delimiter;
+		/* implement later
 		if (delimiter != null && !delimiter.isEmpty()) {
 			this.delimiter = delimiter;
-		}
+		}*/
 
 	}
 
 	@Override
 	public long executeComputation() {
-		// dataStorage to load numbers
+		return 0;
+		
+		/*// dataStorage to load numbers
 		List<Integer> numbers = dataStorage.loadIntegers(input, delimiter);
 		if (numbers.isEmpty()) {
 		    return 0;
@@ -64,9 +67,10 @@ public class UserAPIImplementation implements UserAPI {
 		results.add(sum);
 		dataStorage.storeResults(output, results);
 
-		return sum;
+		return sum;*/
 	}
 
+	/*
 	@Override
 	public long fetchFactorialOfSum() {
 		return dataStorage.fetchComputation();
@@ -75,6 +79,6 @@ public class UserAPIImplementation implements UserAPI {
 	@Override
 	public long fetchExistingResult() {
 		return dataStorage.fetchComputation();
-	}
+	}*/
 
 }
