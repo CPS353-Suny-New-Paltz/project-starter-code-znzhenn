@@ -68,7 +68,7 @@ public class UserAPIImplementation implements UserAPI {
 		results.add(sum);
 		dataStorage.storeResults(output, results);
 
-		return sum;*/
+		return sum;
 	}
 
 	/*
