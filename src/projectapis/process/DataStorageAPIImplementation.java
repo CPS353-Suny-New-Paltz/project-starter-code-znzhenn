@@ -23,8 +23,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 
 	 @Override
 	 public List<Integer> loadIntegers(String inputSource, String delimiter) {
-		 return new ArrayList<>();
-		 /*
+		 
 		 loadedNumbers.clear();
 		 File file = new File(inputSource);
 		 if (!file.exists()) {
@@ -59,7 +58,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	// store results
 	@Override
 	public void storeResults(String outputSource, List<Long> results) {
-		/*
+		
 		savedResults.clear();
 		savedResults.addAll(results);
 		status = ComputationStatus.EXISTS;
@@ -81,7 +80,8 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	//returns the first stored computation result
 	@Override
 	public long fetchComputation() {
-		return savedResults.isEmpty() ? 0L : savedResults.get(0);
+		return 0;
+		//return savedResults.isEmpty() ? 0L : savedResults.get(0);
 	}
 
 	@Override
@@ -91,12 +91,12 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 
 	@Override
 	public String loadData() {
-		return savedData;
-		
+		//return savedData;
+		return "";
 	}
 
 	@Override
 	public void saveComputation() {
-		status = ComputationStatus.EXISTS;
+		//status = ComputationStatus.EXISTS;
 	}
 }
