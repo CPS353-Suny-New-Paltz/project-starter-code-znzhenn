@@ -5,7 +5,7 @@ import project.annotations.ConceptualAPI;
 
 @ConceptualAPI
 public interface FactorialAPI {
-	/* unnecessary right now
+	
 	// doing the actual computation
 	long factorialOfSum(int number); */
 

@@ -8,6 +8,8 @@ public class FactorialAPIImplementation implements FactorialAPI {
 	public FactorialAPIImplementation() {
 
 	}
+	
+	//computing individual factorial of a number
 	@Override
 	public int computeFactorial(int n) {
 		if (n < 0) {
@@ -34,7 +36,7 @@ public class FactorialAPIImplementation implements FactorialAPI {
 		return sum;
 	}
 	
-	/*
+	
 	// takes in a number, adds up digits, calculates the sum for a factorial
 	@Override
 	public long factorialOfSum(int number) {

@@ -3,8 +3,10 @@ package projectapis.network;
 import project.annotations.NetworkAPI;
 import project.annotations.ProcessAPI;
 
-//import projectapis.conceptual.*;
-//import projectapis.process.*;
+import projectapis.conceptual.FactorialAPIImplementation;
+import projectapis.conceptual.FactorialAPI;
+import projectapis.process.DataStorageAPIImplementation;
+import projectapis.process.DataStorageAPI;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -17,14 +19,14 @@ public class UserAPIImplementation implements UserAPI {
 	private String output;
 	private String delimiter = ",";
 	
-	/*
+	
 	private final DataStorageAPI dataStorage;
     private final FactorialAPI factorialAPI;
 
-    public UserAPIImplementation(DataStorageAPI dataStorage, FactorialAPI factorialAPI) {
-        this.dataStorage = dataStorage;
-        this.factorialAPI = factorialAPI;
-    }*/
+    public UserAPIImplementation() {
+    	this.dataStorage = new DataStorageAPIImplementation();
+        this.factorialAPI = new FactorialAPIImplementation();
+    }
 
 	@Override
 	public void setInput(String input) {
@@ -49,9 +51,8 @@ public class UserAPIImplementation implements UserAPI {
 
 	@Override
 	public long executeComputation() {
-		return 0;
 		
-		/*// dataStorage to load numbers
+		// dataStorage to load numbers
 		List<Integer> numbers = dataStorage.loadIntegers(input, delimiter);
 		if (numbers.isEmpty()) {
 		    return 0;
