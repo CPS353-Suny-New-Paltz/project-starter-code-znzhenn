@@ -52,7 +52,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	        }
 
 	        status = loadedNumbers.isEmpty() ? ComputationStatus.NOT_EXISTS : ComputationStatus.EXISTS;
-	        savedData = String.join(delimiter, loadedNumbers.stream().map(String::valueOf).toList());
+	        savedData = String.join(delimiter, loadedNumbers.stream().map(String:valueOf).toList());
 	        return loadedNumbers; */
 	   }
 	 
