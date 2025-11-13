@@ -50,7 +50,8 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	            e.printStackTrace();
 	        }
 	        status = loadedNumbers.isEmpty() ? ComputationStatus.NOT_EXISTS : ComputationStatus.EXISTS;
-	        savedData = String.join(delimiter, loadedNumbers.stream().map(String: valueOf).toList());
+	        savedData = String.join(delimiter, loadedNumbers.stream().map(String::valueOf).toList());
+
 	        return loadedNumbers;
 	   }
 	 
@@ -79,23 +80,23 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	//returns the first stored computation result
 	@Override
 	public long fetchComputation() {
-		return 0;
-		//return savedResults.isEmpty() ? 0L : savedResults.get(0);
+		return savedResults.isEmpty() ? 0L : savedResults.get(savedResults.size()-1);
 	}
 
 	@Override
 	public ComputationStatus getComputationStatus() {
-		return ComputationStatus.NOT_EXISTS;
+		return status;
 	}
 
 	@Override
 	public String loadData() {
-		//return savedData;
-		return "";
+		return savedData;
 	}
 
 	@Override
 	public void saveComputation() {
-		//status = ComputationStatus.EXISTS;
+		if (!savedResults.isEmpty()) {
+			status = ComputationStatus.EXISTS;
+		}
 	}
 }
