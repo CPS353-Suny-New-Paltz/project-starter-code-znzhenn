@@ -49,10 +49,9 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	        } catch (FileNotFoundException e) {
 	            e.printStackTrace();
 	        }
-
 	        status = loadedNumbers.isEmpty() ? ComputationStatus.NOT_EXISTS : ComputationStatus.EXISTS;
-	        savedData = String.join(delimiter, loadedNumbers.stream().map(String:valueOf).toList());
-	        return loadedNumbers; */
+	        savedData = String.join(delimiter, loadedNumbers.stream().map(String: valueOf).toList());
+	        return loadedNumbers;
 	   }
 	 
 	// store results
@@ -73,8 +72,8 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 		} catch (FileNotFoundException e) {
             System.out.println("Error writing results to file: " + outputSource);
             e.printStackTrace();
-        }
-		}*/
+        	}
+		}
 	}
 
 	//returns the first stored computation result

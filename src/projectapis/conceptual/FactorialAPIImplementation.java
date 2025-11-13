@@ -47,5 +47,5 @@ public class FactorialAPIImplementation implements FactorialAPI {
 			temp /= 10;
 		}
 		return computeFactorial(sumDigits);
-	}*/
+	}
 }

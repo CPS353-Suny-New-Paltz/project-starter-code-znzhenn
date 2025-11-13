@@ -7,7 +7,7 @@ import project.annotations.ConceptualAPI;
 public interface FactorialAPI {
 	
 	// doing the actual computation
-	long factorialOfSum(int number); */
+	long factorialOfSum(int number);
 
 	
 	// computing factorial
