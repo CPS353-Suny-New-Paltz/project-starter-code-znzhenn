@@ -47,11 +47,16 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	                if (!part.isEmpty()) {
 	                    try {
 	                        loadedNumbers.add(Integer.parseInt(part));
-	                    } catch (NumberFormatException ignored) {}
+	                    } catch (NumberFormatException ignored) {
+	                    	//invalid int
+	                    	
+	                    }
 	                }
 	            }
 	        }
-	    } catch (Exception ignored) {}
+	    } catch (Exception ignored) {
+	    	//invalid int
+	    }
 
 	    status = loadedNumbers.isEmpty() ?
 	             ComputationStatus.NOT_EXISTS :
