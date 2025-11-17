@@ -11,7 +11,7 @@ public class FactorialAPIImplementation implements FactorialAPI {
 	
 	//computing individual factorial of a number
 	@Override
-	public long computeFactorial(int n) {
+	public long computeFactorial(long n) {
 		if (n < 0) {
 			throw new IllegalArgumentException("n must be >= 0");
 		}
