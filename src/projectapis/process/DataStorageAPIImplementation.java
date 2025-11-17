@@ -1,6 +1,7 @@
 package projectapis.process;
 
 import java.io.File;
+import java.util.stream.Collectors;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -57,8 +58,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	             ComputationStatus.EXISTS;
 
 	    if (!loadedNumbers.isEmpty()) {
-	        savedData = String.join(delimiter,
-	                loadedNumbers.stream().map(String::valueOf).toList());
+	    	savedData = String.join(delimiter,loadedNumbers.stream().map(String::valueOf).collect(Collectors.toList()));
 	    }
 
 	    return loadedNumbers;
