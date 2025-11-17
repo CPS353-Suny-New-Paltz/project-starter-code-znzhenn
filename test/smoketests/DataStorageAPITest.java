@@ -25,9 +25,9 @@ public class DataStorageAPITest {
         api.storeResults("fakeOutput.txt", Arrays.asList(10L, 20L));
         ComputationStatus status = api.getComputationStatus();
 
-        // Assert (intentionally expecting wrong values so it FAILS)
-        assertEquals(2, loaded.size(), "Should have loaded two integers");
-        assertEquals(ComputationStatus.EXISTS, status, "Should report data exists"); 
+        // Assert: should pass
+        assertEquals(0, loaded.size(), "No integers should load from a missing file");
+        assertEquals(ComputationStatus.EXISTS, status, "Status should be EXISTS after storing results");
 		
         /*
 		// DataStorageAPI api = Mockito.mock(DataStorageAPI.class);

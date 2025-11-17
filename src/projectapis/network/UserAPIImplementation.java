@@ -1,8 +1,6 @@
 package projectapis.network;
 
 import project.annotations.NetworkAPI;
-import project.annotations.ProcessAPI;
-
 import projectapis.conceptual.FactorialAPIImplementation;
 import projectapis.conceptual.FactorialAPI;
 import projectapis.process.DataStorageAPIImplementation;
@@ -12,74 +10,74 @@ import java.util.List;
 import java.util.ArrayList;
 
 @NetworkAPI
-@ProcessAPI
 public class UserAPIImplementation implements UserAPI {
 
-	private String input;
-	private String output;
-	private String delimiter = ",";
-	
-	
-	private final DataStorageAPI dataStorage;
+    private String input;
+    private String output;
+    private String delimiter = ",";
+
+    private final DataStorageAPI dataStorage;
     private final FactorialAPI factorialAPI;
 
     public UserAPIImplementation() {
-    	this.dataStorage = new DataStorageAPIImplementation();
+        this.dataStorage = new DataStorageAPIImplementation();
         this.factorialAPI = new FactorialAPIImplementation();
     }
 
-	@Override
-	public void setInput(String input) {
-		this.input = input;
+    @Override
+    public void setInput(String input) {
+        // Validation requirement: public method must validate parameters
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("Input file path cannot be null or empty.");
+        }
+        this.input = input;
+    }
 
-	}
+    @Override
+    public void setOutput(String output) {
+        if (output == null || output.isBlank()) {
+            throw new IllegalArgumentException("Output file path cannot be null or empty.");
+        }
+        this.output = output;
+    }
 
-	@Override
-	public void setOutput(String output) {
-		this.output = output;
+    @Override
+    public void setDelimiter(String delimiter) {
+        if (delimiter == null || delimiter.isBlank()) {
+            throw new IllegalArgumentException("Delimiter cannot be null or empty.");
+        }
+        this.delimiter = delimiter;
+    }
 
-	}
+    @Override
+    public long executeComputation() {
+        try {
+            // Validate state (internal)
+            if (input == null || output == null) {
+                return 0L; // sentinel
+            }
 
-	@Override
-	public void setDelimiter(String delimiter) {
-		
-		if (delimiter != null && !delimiter.isEmpty()) {
-			this.delimiter = delimiter;
-		}
+            List<Integer> numbers = dataStorage.loadIntegers(input, delimiter);
 
-	}
+            if (numbers == null || numbers.isEmpty()) {
+                return 0L; // sentinel
+            }
 
-	@Override
-	public long executeComputation() {
-		
-		// dataStorage to load numbers
-		List<Integer> numbers = dataStorage.loadIntegers(input, delimiter);
-		if (numbers.isEmpty()) {
-		    return 0;
-		}
+            long sum = 0L;
+            for (int number : numbers) {
+                sum += factorialAPI.computeDigitFactorialSum(number);
+            }
 
-		long sum = 0;
-		for (int number : numbers) {
-			sum += factorialAPI.computeDigitFactorialSum(number);
-		}
+            List<Long> results = new ArrayList<>();
+            results.add(sum);
 
-		// Store result in dataStorage
-		List<Long> results = new ArrayList<>();
-		results.add(sum);
-		dataStorage.storeResults(output, results);
+            dataStorage.storeResults(output, results);
 
-		return sum;
-	}
+            return sum;
 
-	/*
-	@Override
-	public long fetchFactorialOfSum() {
-		return dataStorage.fetchComputation();
-	}
-
-	@Override
-	public long fetchExistingResult() {
-		return dataStorage.fetchComputation();
-	}*/
-
+        } catch (Exception e) {
+            // Requirement: catch both expected + unexpected exceptions
+            return 0; // Return sentinel instead of throwing
+        }
+    }
 }

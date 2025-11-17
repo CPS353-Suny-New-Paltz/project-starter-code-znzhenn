@@ -27,19 +27,15 @@ public class UserAPITest {
 		 * UserAPI realAPI = new UserAPIImplementation(); assertNotNull(realAPI);
 		 */
 
-		
-		//empty implementations
-		DataStorageAPI dataStorage = new DataStorageAPIImplementation();
-        FactorialAPI factorialAPI = new FactorialAPIImplementation();
-        UserAPI api = new UserAPIImplementation();
-        
-        assertNotNull(api, "UserAPI should not be null");
-        
-        api.setInput("testInput.txt");
-        api.setOutput("testOutput.txt");
-        long result = api.executeComputation();
-        
-        assertEquals(100L, result, "shoould fail");
+		UserAPI api = new UserAPIImplementation();
+	    assertNotNull(api, "UserAPI should not be null");
+
+	    api.setInput("testInput.txt");   // file does not exist
+	    api.setOutput("testOutput.txt");
+
+	    long result = api.executeComputation();
+
+	    assertEquals(0L, result, "When input file is missing, UserAPI should return 0");
         
 		/*
 		DataStorageAPI dataStorage = null;

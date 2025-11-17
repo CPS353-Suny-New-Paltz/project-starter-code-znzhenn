@@ -26,7 +26,7 @@ public class ComputeEngineIntegrationTest {
         
         //execute computation
         long result = userAPI.executeComputation();
-        assertEquals(120, result, "Expected factorial computation to equal 120");
+        assertEquals(120, result);
         
     	/* checkpoint 4 for later
         // Initial input and output

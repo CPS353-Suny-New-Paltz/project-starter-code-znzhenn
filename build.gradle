@@ -32,11 +32,6 @@ dependencies {
 }
 
 test {
-    useJUnitPlatform() {
-    	excludeTags 'skipTest'
-    }	
-    	filter {
-    		excludeTestsMatching "*IntegrationTest"
-    	} 
-    	ignoreFailures = true
+    useJUnitPlatform()
+    ignoreFailures = false
 }
