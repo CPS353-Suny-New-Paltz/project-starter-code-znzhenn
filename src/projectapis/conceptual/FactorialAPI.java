@@ -11,7 +11,7 @@ public interface FactorialAPI {
 
 	
 	// computing factorial
-	int computeFactorial(int n); 
+	long computeFactorial(int n); 
 
 	//yoink each digit
 	long computeDigitFactorialSum(int number);

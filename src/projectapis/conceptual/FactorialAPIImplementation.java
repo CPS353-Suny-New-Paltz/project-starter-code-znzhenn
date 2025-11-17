@@ -11,13 +11,13 @@ public class FactorialAPIImplementation implements FactorialAPI {
 	
 	//computing individual factorial of a number
 	@Override
-	public int computeFactorial(int n) {
+	public long computeFactorial(int n) {
 		if (n < 0) {
 			throw new IllegalArgumentException("n must be >= 0");
 		}
-		int result = 1;
+		long result = 1L;
 		for (int i = 2; i <= n; i++) {
-			result *= i;
+			result = Math.multiplyExact(result, i);
 		}
 		return result;
 	}
@@ -28,6 +28,9 @@ public class FactorialAPIImplementation implements FactorialAPI {
 		
 		long sum = 0;
 		int temp = number;
+		if (temp == 0) {
+			return computeFactorial(0);
+		}
 		while (temp > 0) {
 			int digit = temp % 10;
 			sum += computeFactorial(digit);
@@ -42,6 +45,9 @@ public class FactorialAPIImplementation implements FactorialAPI {
 	public long factorialOfSum(int number) {
 		int sumDigits = 0;
 		int temp = number;
+		if (temp == 0) {
+			sumDigits =0;
+		}
 		while (temp > 0) {
 			sumDigits += temp % 10;
 			temp /= 10;
