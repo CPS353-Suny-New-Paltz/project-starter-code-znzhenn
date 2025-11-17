@@ -60,10 +60,10 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	    if (!loadedNumbers.isEmpty()) {
 	    	savedData = String.join(delimiter,loadedNumbers.stream().map(String::valueOf).collect(Collectors.toList()));
 	    }
-
-	    return loadedNumbers;
-	}
-
+	        return loadedNumbers;
+	   }
+	 
+	// store results
 	@Override
 	public void storeResults(String outputSource, List<Long> results) {
 	    
@@ -73,21 +73,26 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	    }
 		
 		savedResults.clear();
-	    savedResults.addAll(results);
-
-	    try (PrintWriter writer = new PrintWriter(new File(outputSource))) {
-	        for (Long result : results) {
-	            writer.println(result);
-	        }
-	        status = ComputationStatus.EXISTS;
-	    } catch (Exception e) {
-	        status = ComputationStatus.NOT_EXISTS;
-	    }
+		savedResults.addAll(results);
+		status = ComputationStatus.EXISTS;
+		
+		//write to file 
+		if (outputSource != null && !outputSource.isEmpty()) {
+			File file = new File(outputSource);
+			try (PrintWriter writer = new PrintWriter(file)){
+				for (Long result: results) {
+					writer.println(result);
+				}
+		} catch (FileNotFoundException e) {
+            System.out.println("Error writing results to file: " + outputSource);
+            e.printStackTrace();
+        	}
+		}
 	}
 
 	@Override
 	public long fetchComputation() {
-	    return savedResults.isEmpty() ? 0L : savedResults.get(0);
+		return savedResults.isEmpty() ? 0L : savedResults.get(savedResults.size()-1);
 	}
 
 
