@@ -48,7 +48,7 @@ public class ManualTestingFramework {
         } else {
             System.out.println("Manual test failed: check data storage.");
         }
-        /*
+        
         //fetch result
         long fetchedResult = userAPI.fetchExistingResult();
         System.out.println("Fetched existing result: " + fetchedResult);
@@ -60,7 +60,7 @@ public class ManualTestingFramework {
             System.out.println("Manual test completed successfully.");
         } else {
             System.out.println("Manual test failed: check computation or data storage.");
-        }*/
+        }
         
 		// Helpful hint: the working directory of this program is <root project dir>,
 		// so you can refer to the files just using the INPUT/OUTPUT constants. You do

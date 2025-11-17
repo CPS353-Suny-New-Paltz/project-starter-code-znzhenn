@@ -1,54 +1,54 @@
 package projectprototypes;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
+
 import project.annotations.ProcessAPIPrototype;
 import projectapis.ComputationStatus;
 import projectapis.process.DataStorageAPI;
 
-public class DataStorageAPIPrototype implements DataStorageAPI{
+@ProcessAPIPrototype
+public class DataStorageAPIPrototype implements DataStorageAPI {
 
-	@ProcessAPIPrototype
-	public static void prototype(DataStorageAPI api) {
-		// pretend client usage
-		List<Integer> inputs = api.loadIntegers("input.txt", ",");
-		api.storeResults("output.txt", Arrays.asList(145L, 720L));
-		ComputationStatus status = api.getComputationStatus();
-	}
+    private List<Long> storedResults = new ArrayList<>();
 
-	@Override
-	public List<Integer> loadIntegers(String inputSource, String delimiter) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public List<Integer> loadIntegers(String inputSource, String delimiter) {
+        // Simulate reading integers from input
+        List<Integer> list = new ArrayList<>();
+        String data = "1,2,3,4"; // simple prototype data
+        for (String s : data.split(delimiter)) {
+            list.add(Integer.parseInt(s));
+        }
+        return list;
+    }
 
-	@Override
-	public void storeResults(String outputSource, List<Long> results) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void storeResults(String outputSource, List<Long> results) {
+        // simulate saving
+        storedResults.clear();
+        storedResults.addAll(results);
+    }
 
-	@Override
-	public long fetchComputation() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public long fetchComputation() {
+        // return sum of stored results as a dummy computation
+        return storedResults.stream().mapToLong(Long::longValue).sum();
+    }
 
-	@Override
-	public ComputationStatus getComputationStatus() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public ComputationStatus getComputationStatus() {
+        // Correct: return EXISTS if results exist, else NOT_EXISTS
+        return storedResults.isEmpty() ? ComputationStatus.NOT_EXISTS : ComputationStatus.EXISTS;
+    }
 
-	@Override
-	public String loadData() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public String loadData() {
+        return "1,2,3,4";
+    }
 
-	@Override
-	public void saveComputation() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void saveComputation() {
+        // simulate saving
+    }
 }
