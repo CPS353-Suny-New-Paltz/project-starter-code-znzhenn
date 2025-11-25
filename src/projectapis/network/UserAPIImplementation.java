@@ -63,17 +63,18 @@ public class UserAPIImplementation implements UserAPI {
                 return 0L; // sentinel
             }
 
-            long sum = 0L;
-            for (int number : numbers) {
-                sum += factorialAPI.computeDigitFactorialSum(number);
-            }
-
             List<Long> results = new ArrayList<>();
-            results.add(sum);
+
+            for (int number : numbers) {
+                long value = factorialAPI.computeDigitFactorialSum(number);
+                results.add(value);
+            }
 
             dataStorage.storeResults(output, results);
 
-            return sum;
+            // return last result
+            return results.get(results.size() - 1);
+
 
         } catch (Exception e) {
             // Requirement: catch both expected + unexpected exceptions
