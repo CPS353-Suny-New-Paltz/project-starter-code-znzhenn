@@ -17,7 +17,7 @@ public class FactorialAPIImplementation implements FactorialAPI {
 		}
 		long result = 1L;
 		for (int i = 2; i <= n; i++) {
-			result = Math.multiplyExact(result, i);
+			result = result*i; //remove exception
 		}
 		return result;
 	}
@@ -25,6 +25,10 @@ public class FactorialAPIImplementation implements FactorialAPI {
 	// breaking down numbers into individual digits
 	@Override
 	public long computeDigitFactorialSum(int number) {
+		//adding basic data validation. if 0, then it doesn't work
+		if (number < 0) {
+			return 0L;
+		}
 		
 		long sum = 0;
 		int temp = number;
@@ -43,6 +47,11 @@ public class FactorialAPIImplementation implements FactorialAPI {
 	// takes in a number, adds up digits, calculates the sum for a factorial
 	@Override
 	public long factorialOfSum(int number) {
+		//same data validation
+		if (number < 0) {
+			return 0L;
+		}
+
 		int sumDigits = 0;
 		int temp = number;
 		if (temp == 0) {
