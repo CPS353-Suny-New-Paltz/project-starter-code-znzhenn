@@ -62,8 +62,6 @@ public class UserAPIImplementation implements UserAPI {
             if (numbers == null || numbers.isEmpty()) {
                 return 0L; // sentinel
             }
-            
-
 
             List<Long> results = new ArrayList<>();
 
@@ -84,8 +82,7 @@ public class UserAPIImplementation implements UserAPI {
 
 
         } catch (Exception e) {
-            // Requirement: catch both expected + unexpected exceptions
-            return 0; // Return sentinel instead of throwing
+            return 0L;
         }
     }
 }
