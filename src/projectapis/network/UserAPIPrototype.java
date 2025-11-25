@@ -1,7 +1,6 @@
-package projectprototypes;
+package projectapis.network;
 
 import project.annotations.NetworkAPIPrototype;
-import projectapis.network.UserAPI;
 
 public class UserAPIPrototype{
 

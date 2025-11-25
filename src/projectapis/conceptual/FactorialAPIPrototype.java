@@ -1,7 +1,6 @@
-package projectprototypes;
+package projectapis.conceptual;
 
 import project.annotations.ConceptualAPIPrototype;
-import projectapis.conceptual.FactorialAPI;
 
 public class FactorialAPIPrototype {
 
