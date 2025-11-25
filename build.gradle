@@ -33,5 +33,5 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    excludeTags 'skip'
+    	excludeTags 'skip'
 }
