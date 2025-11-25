@@ -63,18 +63,15 @@ public class UserAPIImplementation implements UserAPI {
                 return 0L; // sentinel
             }
             
-           
-            if (delimiter == null || delimiter.isBlank()) {
-                return 0L;
-            }
 
 
             List<Long> results = new ArrayList<>();
 
             for (int number : numbers) {
-                if (number < 0) {
-                    return 0L;  
-                }
+            	if (number < 0) {
+            	    results.add(0L); //allows negative numbers
+            	    continue;
+            	}
                 long value = factorialAPI.computeDigitFactorialSum(number);
                 results.add(value);
             }
