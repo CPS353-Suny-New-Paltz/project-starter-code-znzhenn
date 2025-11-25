@@ -69,6 +69,10 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	                             .map(String::valueOf)
 	                             .collect(Collectors.toList()));
 	    }
+	    savedResults.clear();
+	    for (Integer i : loadedNumbers) {
+	    	savedResults.add(i.longValue());
+	    }
 
 	        return loadedNumbers;
 	   }
@@ -86,7 +90,20 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 		savedResults.addAll(results);
 		status = ComputationStatus.EXISTS;
 		
-		//write to file 
+		//write to one comma-seperated line
+		String line = results.stream()
+				.map(String::valueOf)
+				.collect(Collectors.joining(","));
+		
+		try (PrintWriter writer = new PrintWriter(new File(outputSource))) {
+			writer.print(line);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		/* writes incorrect lines
 		if (outputSource != null && !outputSource.isEmpty()) {
 			File file = new File(outputSource);
 			try (PrintWriter writer = new PrintWriter(file)){
@@ -97,7 +114,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
             System.out.println("Error writing results to file: " + outputSource);
             e.printStackTrace();
         	}
-		}
+		}*/
 	}
 
 	@Override
