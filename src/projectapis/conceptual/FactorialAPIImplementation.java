@@ -34,8 +34,8 @@ public class FactorialAPIImplementation implements FactorialAPI {
 		//adding basic data validation. if 0, then it doesn't work
 		try{
 			if (number < 0) {
-		}
 			return 0L;
+		}	
 		
 			long sum = 0;
 			int temp = number;
