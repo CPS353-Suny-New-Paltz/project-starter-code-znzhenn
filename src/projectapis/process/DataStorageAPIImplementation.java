@@ -98,7 +98,8 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 		try (PrintWriter writer = new PrintWriter(new File(outputSource))) {
 			writer.print(line);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			status = ComputationStatus.NOT_EXISTS;
+			return; //don't print
 		}
 		
 		
