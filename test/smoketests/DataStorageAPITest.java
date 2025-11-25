@@ -24,21 +24,21 @@ public class DataStorageAPITest {
         List<Integer> loaded = api.loadIntegers("fakeInput.txt", ",");
         api.storeResults("fakeOutput.txt", Arrays.asList(10L, 20L));
         ComputationStatus status = api.getComputationStatus();
+        long result = api.fetchComputation();
+        
 
         // Assert: should pass
         assertEquals(0, loaded.size(), "No integers should load from a missing file");
         assertEquals(ComputationStatus.EXISTS, status, "Status should be EXISTS after storing results");
-		
+        //assertEquals(0L, result, "Default computation result should be 0 for smoke test");
+        
         /*
-		// DataStorageAPI api = Mockito.mock(DataStorageAPI.class);
-		// Mockito.when(api.fetchComputation()).thenReturn(0L);
-
-		DataStorageAPI api = new DataStorageAPIImplementation();
+		Mockito.when(api.fetchComputation()).thenReturn(0L);
 		assertNotNull(api);
-
-		long result = api.fetchComputation();
 		System.out.println("DataStorageAPI fetchComputation result: " + result);
 		*/
+        
+        
 		/*
 		 * not implemented methods //load integers List<Integer> loadIntegers(String
 		 * inputSource, String delimiter);

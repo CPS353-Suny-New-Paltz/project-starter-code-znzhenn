@@ -19,6 +19,7 @@ public class ComputeEngineIntegrationTest {
 
     @Test
     void testComputeEngineIntegration() {
+    	/*
     	//empty logic 
     	DataStorageAPI dataStorage = new DataStorageAPIImplementation();
         FactorialAPI factorialAPI = new FactorialAPIImplementation();
@@ -26,9 +27,8 @@ public class ComputeEngineIntegrationTest {
         
         //execute computation
         long result = userAPI.executeComputation();
-        assertEquals(long, result);
+        assertEquals(120L, result);*/
         
-    	/* checkpoint 4 for later
         // Initial input and output
         InMemoryInput inputConfig = new InMemoryInput(Arrays.asList(1, 10, 25));
         InMemoryOutput outputConfig = new InMemoryOutput();
@@ -52,6 +52,6 @@ public class ComputeEngineIntegrationTest {
         assertEquals(2, results.size(), "Should have 2 output entries");
         assertEquals("1", results.get(0), "Expected factorial of 1");
         assertEquals(String.valueOf(result2), results.get(1), "Expected UserAPI computation");
-    */
+ 
     } 
 }
