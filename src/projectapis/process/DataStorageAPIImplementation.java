@@ -1,6 +1,7 @@
 package projectapis.process;
 
 import java.io.File;
+import java.util.stream.Collectors;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,36 +22,57 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	public DataStorageAPIImplementation() {
 	}
 
-	 @Override
-	 public List<Integer> loadIntegers(String inputSource, String delimiter) {
-		 
-		 loadedNumbers.clear();
-		 File file = new File(inputSource);
-		 if (!file.exists()) {
-			 System.out.println("Input file not found: " + inputSource);
-			 status = ComputationStatus.NOT_EXISTS;
-			 return loadedNumbers;
-		 }
-		 try (Scanner scanner = new Scanner(file)) {
-			 while (scanner.hasNextLine()) {
-				 String line = scanner.nextLine();
-				 String[] parts = line.split(delimiter);
-				 for (String part : parts) {
-					 part = part.trim();
-					 if (!part.isEmpty()) {
-						 try {
-							 loadedNumbers.add(Integer.parseInt(part));
-						 } catch (NumberFormatException e) {
-							 System.out.println("Warning: invalid number '" + part + "' skipped.");
-	                       }
+	@Override
+	public List<Integer> loadIntegers(String inputSource, String delimiter) {
+
+	    loadedNumbers.clear();
+
+	    if (inputSource == null || inputSource.isBlank() ||
+	        delimiter == null || delimiter.isBlank()) {
+	        status = ComputationStatus.NOT_EXISTS;
+	        return loadedNumbers;
+	    }
+
+	    File file = new File(inputSource);
+	    if (!file.exists()) {
+	        status = ComputationStatus.NOT_EXISTS;
+	        return loadedNumbers;  // no printing
+	    }
+
+	    try (Scanner scanner = new Scanner(file)) {
+	        while (scanner.hasNextLine()) {
+	            String[] parts = scanner.nextLine().split(delimiter);
+	            for (String part : parts) {
+	                part = part.trim();
+	                if (!part.isEmpty()) {
+	                    try {
+	                        loadedNumbers.add(Integer.parseInt(part));
+	                    } catch (NumberFormatException ignored) {
+	                    	//invalid int
+	                    	
 	                    }
 	                }
 	            }
-	        } catch (FileNotFoundException e) {
-	            e.printStackTrace();
 	        }
-	        status = loadedNumbers.isEmpty() ? ComputationStatus.NOT_EXISTS : ComputationStatus.EXISTS;
-	        savedData = String.join(delimiter, loadedNumbers.stream().map(String::valueOf).toList());
+	    } catch (Exception ignored) {
+	    	//invalid int
+	    }
+
+	    status = loadedNumbers.isEmpty() ?
+	             ComputationStatus.NOT_EXISTS :
+	             ComputationStatus.EXISTS;
+
+	    if (!loadedNumbers.isEmpty()) {
+	        savedData = String.join(
+	                delimiter,
+	                loadedNumbers.stream()
+	                             .map(String::valueOf)
+	                             .collect(Collectors.toList()));
+	    }
+	    savedResults.clear();
+	    for (Integer i : loadedNumbers) {
+	    	savedResults.add(i.longValue());
+	    }
 
 	        return loadedNumbers;
 	   }
@@ -58,12 +80,30 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	// store results
 	@Override
 	public void storeResults(String outputSource, List<Long> results) {
+	    
+		if (outputSource == null || outputSource.isBlank() || results == null) {
+	        status = ComputationStatus.NOT_EXISTS;
+	        return;
+	    }
 		
 		savedResults.clear();
 		savedResults.addAll(results);
 		status = ComputationStatus.EXISTS;
 		
-		//write to file 
+		//write to one comma-seperated line
+		String line = results.stream()
+				.map(String::valueOf)
+				.collect(Collectors.joining(","));
+		
+		try (PrintWriter writer = new PrintWriter(new File(outputSource))) {
+			writer.print(line);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		/* writes incorrect lines
 		if (outputSource != null && !outputSource.isEmpty()) {
 			File file = new File(outputSource);
 			try (PrintWriter writer = new PrintWriter(file)){
@@ -74,14 +114,14 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
             System.out.println("Error writing results to file: " + outputSource);
             e.printStackTrace();
         	}
-		}
+		}*/
 	}
 
-	//returns the first stored computation result
 	@Override
 	public long fetchComputation() {
 		return savedResults.isEmpty() ? 0L : savedResults.get(savedResults.size()-1);
 	}
+
 
 	@Override
 	public ComputationStatus getComputationStatus() {

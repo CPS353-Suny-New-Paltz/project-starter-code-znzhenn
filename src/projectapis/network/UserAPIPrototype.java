@@ -2,7 +2,7 @@ package projectapis.network;
 
 import project.annotations.NetworkAPIPrototype;
 
-public class UserAPIPrototype {
+public class UserAPIPrototype{
 
 	@NetworkAPIPrototype
 	public static void prototype(UserAPI api) {
@@ -15,4 +15,5 @@ public class UserAPIPrototype {
 		api.executeComputation();
 
 	}
+
 }

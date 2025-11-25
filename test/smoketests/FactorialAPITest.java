@@ -34,7 +34,7 @@ public class FactorialAPITest {
 		assertNotNull(api);
 
 		long sum = api.computeDigitFactorialSum(247);
-		assertEquals(9L, sum, "should fail");
+		assertEquals(5066L, sum, "should pass");
 		
 		//System.out.println("Sum of factorials of 247 digits: " + sum);
 
