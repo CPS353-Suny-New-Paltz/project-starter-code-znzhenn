@@ -65,10 +65,10 @@ public class UserAPIImplementation implements UserAPI {
 
             List<Long> results = new ArrayList<>();
 
+            
             for (int number : numbers) {
-            	if (number < 0) {
-            	    results.add(0L); //allows negative numbers
-            	    continue;
+            	if (number < 0) {// shouldn't allow negative numbers
+            	    return 0L;
             	}
                 long value = factorialAPI.computeDigitFactorialSum(number);
                 results.add(value);
