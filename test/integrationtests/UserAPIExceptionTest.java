@@ -1,7 +1,7 @@
 package integrationtests;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import projectapis.network.UserAPI;
 import projectapis.network.UserAPIImplementation;
@@ -20,11 +20,25 @@ public class UserAPIExceptionTest {
             throw new RuntimeException("Boom!");
         }
 
-        @Override public void storeResults(String output, List<Long> results) { }
-        @Override public long fetchComputation() { return 0; }
-        @Override public projectapis.ComputationStatus getComputationStatus() { return null; }
-        @Override public String loadData() { return null; }
-        @Override public void saveComputation() { }
+        @Override public void storeResults(String output, List<Long> results) { 
+        	
+        }
+        
+        @Override public long fetchComputation() { 
+        	return 0; 
+        }
+        
+        @Override public projectapis.ComputationStatus getComputationStatus() { 
+        	return null; 
+        }
+        
+        @Override public String loadData() { 
+        	return null; 
+        }
+        
+        @Override public void saveComputation() {
+        	
+        }
     }
 
     @Test
