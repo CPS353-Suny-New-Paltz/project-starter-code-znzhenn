@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import projectapis.conceptual.FactorialAPI;
 import projectapis.conceptual.FactorialAPIImplementation;
 
-public class chkpt4implementationtest {
+public class Chkpt4implementationtest {
 
     private final FactorialAPI api = new FactorialAPIImplementation();
 
