@@ -45,9 +45,7 @@ public class FactorialAPIImplementation implements FactorialAPI {
 		
 			long sum = 0;
 			int temp = number;
-			if (temp == 0) {
-				return computeFactorial(0);
-			}
+			
 			while (temp > 0) {
 				int digit = temp % 10;
 				sum += computeFactorial(digit);
@@ -71,9 +69,7 @@ public class FactorialAPIImplementation implements FactorialAPI {
 	
 			int sumDigits = 0;
 			int temp = number;
-			if (temp == 0) {
-				sumDigits =0;
-			}
+			
 			while (temp > 0) {
 				sumDigits += temp % 10;
 				temp /= 10;
