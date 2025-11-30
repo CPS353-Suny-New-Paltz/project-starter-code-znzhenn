@@ -48,7 +48,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	                if (!part.isEmpty()) {
 	                    try {
 	                    	int value = Integer.parseInt(part);
-	                    	if (value <0) { // doesn't allow negatives
+	                    	if (value <0) { // rejects negative numbers
 	                    		continue;
 	                    	}
 	                        loadedNumbers.add(value);
@@ -65,17 +65,19 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	    	//invalid int
 	    }
 
-	    status = loadedNumbers.isEmpty() ?
-	             ComputationStatus.NOT_EXISTS :
-	             ComputationStatus.EXISTS;
+	    //updates based on if numbers were loaded
+	    status = loadedNumbers.isEmpty()
+	             ? ComputationStatus.NOT_EXISTS
+	             : ComputationStatus.EXISTS;
 
+	    //save as string
 	    if (!loadedNumbers.isEmpty()) {
 	        savedData = String.join(
 	                delimiter,
 	                loadedNumbers.stream()
 	                             .map(String::valueOf)
 	                             .collect(Collectors.toList()));
-	    }
+	    } //stored as long
 	    savedResults.clear();
 	    for (Integer i : loadedNumbers) {
 	        savedResults.add(i.longValue());
