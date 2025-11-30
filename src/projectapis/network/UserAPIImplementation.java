@@ -20,9 +20,17 @@ public class UserAPIImplementation implements UserAPI {
     private final FactorialAPI factorialAPI;
 
     public UserAPIImplementation() {
-        this.dataStorage = new DataStorageAPIImplementation();
-        this.factorialAPI = new FactorialAPIImplementation();
+        this(new DataStorageAPIImplementation(), new FactorialAPIImplementation());
     }
+
+    public UserAPIImplementation(DataStorageAPI dataStorage, FactorialAPI factorialAPI) {
+        if (dataStorage == null || factorialAPI == null) {
+            throw new IllegalArgumentException("dependencies can't be null");
+        }
+        this.dataStorage = dataStorage;
+        this.factorialAPI = factorialAPI;
+    }
+
 
     @Override
     public void setInput(String input) {
