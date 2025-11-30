@@ -27,6 +27,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 
 	    loadedNumbers.clear();
 
+	    // validate input
 	    if (inputSource == null || inputSource.isBlank() ||
 	        delimiter == null || delimiter.isBlank()) {
 	        status = ComputationStatus.NOT_EXISTS;
@@ -34,9 +35,9 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	    }
 
 	    File file = new File(inputSource);
-	    if (!file.exists()) {
+	    if (!file.exists() || !file.isFile() ) {
 	        status = ComputationStatus.NOT_EXISTS;
-	        return loadedNumbers;  // no printing
+	        return loadedNumbers;
 	    }
 
 	    try (Scanner scanner = new Scanner(file)) {
@@ -46,33 +47,42 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	                part = part.trim();
 	                if (!part.isEmpty()) {
 	                    try {
-	                        loadedNumbers.add(Integer.parseInt(part));
+	                    	int value = Integer.parseInt(part);
+	                    	if (value <0) { // rejects negative numbers
+	                    		continue;
+	                    	}
+	                        loadedNumbers.add(value);
 	                    } catch (NumberFormatException ignored) {
-	                    	//invalid int
+	                    	// skips invalid int
 	                    	
 	                    }
 	                }
 	            }
 	        }
 	    } catch (Exception ignored) {
+	    	status = ComputationStatus.NOT_EXISTS;
+	    	return loadedNumbers;
 	    	//invalid int
 	    }
 
-	    status = loadedNumbers.isEmpty() ?
-	             ComputationStatus.NOT_EXISTS :
-	             ComputationStatus.EXISTS;
+	    //updates based on if numbers were loaded
+	    status = loadedNumbers.isEmpty()
+	             ? ComputationStatus.NOT_EXISTS
+	             : ComputationStatus.EXISTS;
 
+	    //save as string
 	    if (!loadedNumbers.isEmpty()) {
 	        savedData = String.join(
 	                delimiter,
 	                loadedNumbers.stream()
 	                             .map(String::valueOf)
 	                             .collect(Collectors.toList()));
-	    }
+	    } //stored as long
 	    savedResults.clear();
 	    for (Integer i : loadedNumbers) {
-	    	savedResults.add(i.longValue());
+	        savedResults.add(i.longValue());
 	    }
+
 
 	        return loadedNumbers;
 	   }
@@ -81,6 +91,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	@Override
 	public void storeResults(String outputSource, List<Long> results) {
 	    
+		// validate input
 		if (outputSource == null || outputSource.isBlank() || results == null) {
 	        status = ComputationStatus.NOT_EXISTS;
 	        return;
@@ -97,8 +108,9 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 		
 		try (PrintWriter writer = new PrintWriter(new File(outputSource))) {
 			writer.print(line);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			status = ComputationStatus.NOT_EXISTS;
+			return; //don't print
 		}
 		
 		
@@ -119,22 +131,26 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 
 	@Override
 	public long fetchComputation() {
+		// doesn't need data validation (has no inputs)
 		return savedResults.isEmpty() ? 0L : savedResults.get(savedResults.size()-1);
 	}
 
 
 	@Override
 	public ComputationStatus getComputationStatus() {
+		// doesn't need data validation (has no inputs)
 		return status;
 	}
 
 	@Override
 	public String loadData() {
+		// doesn't need data validation (has no inputs)
 		return savedData;
 	}
 
 	@Override
 	public void saveComputation() {
+		// doesn't need data validation (has no inputs)
 		if (!savedResults.isEmpty()) {
 			status = ComputationStatus.EXISTS;
 		}

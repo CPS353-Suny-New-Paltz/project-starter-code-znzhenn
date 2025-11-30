@@ -20,9 +20,17 @@ public class UserAPIImplementation implements UserAPI {
     private final FactorialAPI factorialAPI;
 
     public UserAPIImplementation() {
-        this.dataStorage = new DataStorageAPIImplementation();
-        this.factorialAPI = new FactorialAPIImplementation();
+        this(new DataStorageAPIImplementation(), new FactorialAPIImplementation());
     }
+
+    public UserAPIImplementation(DataStorageAPI dataStorage, FactorialAPI factorialAPI) {
+        if (dataStorage == null || factorialAPI == null) {
+            throw new IllegalArgumentException("dependencies can't be null");
+        }
+        this.dataStorage = dataStorage;
+        this.factorialAPI = factorialAPI;
+    }
+
 
     @Override
     public void setInput(String input) {
@@ -65,10 +73,15 @@ public class UserAPIImplementation implements UserAPI {
 
             List<Long> results = new ArrayList<>();
 
+            
             for (int number : numbers) {
+            	if (number < 0) {// shouldn't allow negative numbers
+            	    return 0L;
+            	}
                 long value = factorialAPI.computeDigitFactorialSum(number);
                 results.add(value);
             }
+
 
             dataStorage.storeResults(output, results);
 
@@ -77,8 +90,7 @@ public class UserAPIImplementation implements UserAPI {
 
 
         } catch (Exception e) {
-            // Requirement: catch both expected + unexpected exceptions
-            return 0; // Return sentinel instead of throwing
+            return 0L;
         }
     }
 }
