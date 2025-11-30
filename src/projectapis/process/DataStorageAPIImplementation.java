@@ -35,9 +35,9 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	    }
 
 	    File file = new File(inputSource);
-	    if (!file.exists()) {
+	    if (!file.exists() || !file.isFile() ) {
 	        status = ComputationStatus.NOT_EXISTS;
-	        return loadedNumbers;  // no printing
+	        return loadedNumbers;
 	    }
 
 	    try (Scanner scanner = new Scanner(file)) {
@@ -47,7 +47,11 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	                part = part.trim();
 	                if (!part.isEmpty()) {
 	                    try {
-	                        loadedNumbers.add(Integer.parseInt(part));
+	                    	int value = Integer.parseInt(part);
+	                    	if (value <0) { // doesn't allow negatives
+	                    		continue;
+	                    	}
+	                        loadedNumbers.add(value);
 	                    } catch (NumberFormatException ignored) {
 	                    	// skips invalid int
 	                    	
@@ -56,6 +60,8 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	            }
 	        }
 	    } catch (Exception ignored) {
+	    	status = ComputationStatus.NOT_EXISTS;
+	    	return loadedNumbers;
 	    	//invalid int
 	    }
 
