@@ -19,7 +19,7 @@ public class FactorialAPIImplementation implements FactorialAPI {
 
 	        long result = 1L;
 	        for (int i = 2; i <= n; i++) {
-	            result = result * i; // safe multiplication
+	        	result = Math.multiplyExact(result, i); //safer
 	        }
 	        return result;
 	    } catch (Exception e) {

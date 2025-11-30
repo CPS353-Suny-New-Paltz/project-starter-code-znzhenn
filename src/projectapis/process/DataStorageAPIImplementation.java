@@ -27,6 +27,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 
 	    loadedNumbers.clear();
 
+	    // validate input
 	    if (inputSource == null || inputSource.isBlank() ||
 	        delimiter == null || delimiter.isBlank()) {
 	        status = ComputationStatus.NOT_EXISTS;
@@ -48,7 +49,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	                    try {
 	                        loadedNumbers.add(Integer.parseInt(part));
 	                    } catch (NumberFormatException ignored) {
-	                    	//invalid int
+	                    	// skips invalid int
 	                    	
 	                    }
 	                }
@@ -71,8 +72,9 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	    }
 	    savedResults.clear();
 	    for (Integer i : loadedNumbers) {
-	    	savedResults.add(i.longValue());
+	        savedResults.add(i.longValue());
 	    }
+
 
 	        return loadedNumbers;
 	   }
@@ -81,6 +83,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	@Override
 	public void storeResults(String outputSource, List<Long> results) {
 	    
+		// validate input
 		if (outputSource == null || outputSource.isBlank() || results == null) {
 	        status = ComputationStatus.NOT_EXISTS;
 	        return;
@@ -120,22 +123,26 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 
 	@Override
 	public long fetchComputation() {
+		// doesn't need data validation (has no inputs)
 		return savedResults.isEmpty() ? 0L : savedResults.get(savedResults.size()-1);
 	}
 
 
 	@Override
 	public ComputationStatus getComputationStatus() {
+		// doesn't need data validation (has no inputs)
 		return status;
 	}
 
 	@Override
 	public String loadData() {
+		// doesn't need data validation (has no inputs)
 		return savedData;
 	}
 
 	@Override
 	public void saveComputation() {
+		// doesn't need data validation (has no inputs)
 		if (!savedResults.isEmpty()) {
 			status = ComputationStatus.EXISTS;
 		}
