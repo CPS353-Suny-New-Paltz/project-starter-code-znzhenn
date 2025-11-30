@@ -12,10 +12,14 @@ public class FactorialAPIImplementation implements FactorialAPI {
 	//computing individual factorial of a number
 	@Override
 	public long computeFactorial(long n) {
-	    try { //adding data validation
+	    try { 
 	        if (n < 0) {
 	        	return 0L;
 	        }
+	        
+	        if (n == 0 || n == 1) { // base case
+                return 1L;
+            }
 
 	        long result = 1L;
 	        for (int i = 2; i <= n; i++) {
@@ -31,11 +35,13 @@ public class FactorialAPIImplementation implements FactorialAPI {
 	// breaking down numbers into individual digits
 	@Override
 	public long computeDigitFactorialSum(int number) {
-		//adding basic data validation. if 0, then it doesn't work
 		try{
 			if (number < 0) {
 			return 0L;
-		}	
+			}
+			if (number == 0) {      // handles 0
+                return computeFactorial(0);
+			}
 		
 			long sum = 0;
 			int temp = number;
@@ -59,7 +65,6 @@ public class FactorialAPIImplementation implements FactorialAPI {
 	public long factorialOfSum(int number) {
 		try {
 			
-			//same data validation
 			if (number < 0) {
 				return 0L;
 			}
@@ -73,6 +78,7 @@ public class FactorialAPIImplementation implements FactorialAPI {
 				sumDigits += temp % 10;
 				temp /= 10;
 			}
+			// if sumDigits =0, compute Factorial will handle it
 			return computeFactorial(sumDigits);
 		} catch (Exception e) {
 			return 0L;
