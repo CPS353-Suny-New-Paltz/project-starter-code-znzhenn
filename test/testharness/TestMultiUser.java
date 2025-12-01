@@ -32,6 +32,7 @@ public class TestMultiUser {
 		coordinator = networkAPI;
 		//TODO 2: create an instance of the implementation of your @NetworkAPI; this is the component that the user will make requests to
 		// Store it in the 'coordinator' instance variable
+		// complete
 	}
 	
 	
