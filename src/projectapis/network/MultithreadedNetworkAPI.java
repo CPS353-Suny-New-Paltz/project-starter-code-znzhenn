@@ -1,11 +1,24 @@
 package projectapis.network;
 
+import projectapis.conceptual.FactorialAPI;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+
 public class MultithreadedNetworkAPI implements UserAPI{
 
 	private String inputPath;
 	private String outputPath;
 	private String delimiter;
+	private final ExecutorService executor;
+    private final SingleThreadedNetworkAPI single;
 
+    public MultithreadedNetworkAPI(FactorialAPI factorialAPI) {
+        executor = Executors.newFixedThreadPool(4);
+        single = new SingleThreadedNetworkAPI(factorialAPI);
+    }
+
+    
 	@Override
 	public void setInput(String input) {
 		this.inputPath = input;
@@ -26,9 +39,21 @@ public class MultithreadedNetworkAPI implements UserAPI{
 
 	@Override
 	public long executeComputation() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+        try {
+            return executor.submit(() -> {
+                single.setInput(inputPath);
+                single.setOutput(outputPath);
+                single.setDelimiter(delimiter);
+                return single.executeComputation();
+            }).get();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void shutdown() {
+        executor.shutdown();
+    }
 	
 	
 }

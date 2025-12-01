@@ -1,5 +1,7 @@
 package projectapis.network;
 import projectapis.conceptual.FactorialAPI;
+import projectapis.network.SingleThreadedNetworkAPI;
+
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,6 +16,12 @@ public class SingleThreadedNetworkAPI implements UserAPI{
 	public String inputPath;
 	public String delimiter;
 	private FactorialAPI factorialAPI;
+	
+	
+	public SingleThreadedNetworkAPI(FactorialAPI factorialAPI) {
+	    this.factorialAPI = factorialAPI;
+	}
+
 	
 	@Override
 	public void setInput(String input) {
@@ -51,8 +59,9 @@ public class SingleThreadedNetworkAPI implements UserAPI{
             Files.writeString(Path.of(outputPath), String.valueOf(result));
 
             return result;
-	} catch (IOException e) {
-		throw new RuntimeException(e);
-	}
-	
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+			}
+		}
 }
+	
