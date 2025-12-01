@@ -3,21 +3,25 @@ package projectapis.network;
 
 public class SingleThreadedNetworkAPI implements UserAPI{
 
+	public String outputPath;
+	public String inputPath;
+	public String delimiter;
+	
 	@Override
 	public void setInput(String input) {
-		// TODO Auto-generated method stub
+		this.inputPath = input;
 		
 	}
 
 	@Override
 	public void setOutput(String output) {
-		// TODO Auto-generated method stub
+		this.outputPath = output;
 		
 	}
 
 	@Override
 	public void setDelimiter(String delimiter) {
-		// TODO Auto-generated method stub
+		this.delimiter = delimiter;
 		
 	}
 
