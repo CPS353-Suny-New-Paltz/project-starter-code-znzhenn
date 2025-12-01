@@ -1,6 +1,5 @@
 package testHarness;
 
-import API_Package.MultithreadedNetworkAPI;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,8 +11,8 @@ import java.util.concurrent.Future;
 
 import projectapis.conceptual.FactorialAPI;
 import projectapis.network.UserAPI;
+import projectapis.network.MultithreadedNetworkAPI;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,16 +20,17 @@ public class TestMultiUser {
 	
 	// TODO 1: change the type of this variable to the name you're using for your @NetworkAPI interface
 	// complete
-	private FactorialAPI coordinator;
-	private UserAPI networkAPI;
+	private UserAPI coordinator;
+	private MultithreadedNetworkAPI networkAPI;
 	
 	@BeforeEach
 	public void initializeComputeEngine() {
 		networkAPI = new MultithreadedNetworkAPI();
-		//TODO 2: create an instance of the implementation of your @NetworkAPI; this is the component
-		// that the user will make requests to
+		//TODO 2: create an instance of the implementation of your @NetworkAPI; this is the component that the user will make requests to
 		// Store it in the 'coordinator' instance variable
 	}
+	
+	
 	public void cleanup() {
         if (networkAPI != null) {
             networkAPI.shutdown();
