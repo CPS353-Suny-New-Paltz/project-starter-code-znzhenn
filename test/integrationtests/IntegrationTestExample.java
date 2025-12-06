@@ -21,7 +21,7 @@ public class IntegrationTestExample {
     @Test
     public void testIntegration() {
     	
-    	InMemoryInput input = new InMemoryInput(Arrays.asList(1, 15, 10, 5, 2, 3, 8));
+    	InMemoryInput input = new InMemoryInput(Arrays.asList(1, 15,10,5,2,3,8));
     	InMemoryOutput output = new InMemoryOutput();
     	
     	DataStorageAPI dataStorage = new InMemoryDataStorageAPI(input, output);
