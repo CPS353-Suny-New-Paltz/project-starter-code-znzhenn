@@ -1,5 +1,8 @@
 package integrationtests;
 
+import integrationtests.InMemoryInput;
+import integrationtests.InMemoryOutput;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -20,8 +23,9 @@ public class InMemoryDataStorageAPI implements DataStorageAPI {
 
 	@Override
 	public List<Integer> loadIntegers(String inputSource, String delimiter) {
-		return input.getInput();
+	    return new ArrayList<>(input.getInput());
 	}
+
 
 	@Override
 	public void storeResults(String outputSource, List<Long> results) {
