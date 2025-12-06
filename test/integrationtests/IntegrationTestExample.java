@@ -2,6 +2,7 @@ package integrationtests;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
+import java.util.Arrays;
 
 import projectapis.conceptual.FactorialAPI;
 import projectapis.conceptual.FactorialAPIImplementation;
@@ -22,8 +23,10 @@ public class IntegrationTestExample {
     	/*
     	InMemoryInput input = null;
 		InMemoryOutput output = null;	*/
+    	InMemoryInput input = new InMemoryInput(Arrays.asList(1, 15, 10, 5, 2, 3, 8));
+        InMemoryOutput output = new InMemoryOutput();
 		
-    	DataStorageAPI dataStorage = new DataStorageAPIImplementation();
+    	DataStorageAPI dataStorage = new InMemoryDataStorageAPI(input, output);
         FactorialAPI factorialAPI = new FactorialAPIImplementation();
         UserAPI userAPI = new UserAPIImplementation(dataStorage, factorialAPI);
 
@@ -35,13 +38,15 @@ public class IntegrationTestExample {
         userAPI.setOutput(outputFile);*/
 
 
-        userAPI.setInput("test/testInputFile.test");
-        userAPI.setOutput("test/fakeOutput.txt");
+        userAPI.setInput("ignored for mem"); 
+        userAPI.setOutput("ignored in for mem");
         userAPI.setDelimiter(",");
 
         long result = userAPI.executeComputation();
+        assertTrue(result >= 0, "Result should be non-negative");
 
-        // Optionally assert
-        assertTrue(result >= 0);
+        System.out.println("In-memory results: " + output.getOutput());
+        
+        
     }
 }
