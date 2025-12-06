@@ -48,6 +48,9 @@ public class SingleThreadedNetworkAPI implements UserAPI{
 			Path inPath = Path.of(inputPath).toAbsolutePath();
 	        Path outPath = Path.of(outputPath).toAbsolutePath();
 	        
+	        //ensure output file exists
+	        Files.createDirectories(outPath.getParent());
+	        
 			String content = Files.readString(Path.of(inputPath));
             List<String> tokens = Arrays.asList(content.split(delimiter));
 
