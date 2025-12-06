@@ -1,8 +1,6 @@
 package testharness;
 
 import java.io.File;
-import java.nio.file.Path;
-
 import projectapis.network.UserAPI;
 
 import projectapis.conceptual.FactorialAPI;
@@ -19,23 +17,16 @@ public class TestUser {
 	}
 
 	public void run(String outputPath) {
-		String delimiter = ","; //changed delimiter
-		Path inputPath = Path.of("test", "testInputFile.test").toAbsolutePath();
-		//String inputPath = "test" + File.separatorChar + "testInputFile.test";
-		
-		//check file existence
-		File inputFile = inputPath.toFile();
-        if (!inputFile.exists()) {
-            throw new RuntimeException("Input file not found at: " + inputFile.getAbsolutePath());
-        }
+		char delimiter = ','; //changed delimiter to follow my format
+		String inputPath = "test" + File.separatorChar + "testInputFile.test";
 		
 		// TODO 4: Call the appropriate method(s) on the coordinator to get it to 
 		// run the compute job specified by inputPath, outputPath, and delimiter
 		
 		// Set inputs on the UserAPI
-        coordinator.setInput(inputFile.getAbsolutePath());
+        coordinator.setInput(inputPath);
         coordinator.setOutput(outputPath);
-        coordinator.setDelimiter(delimiter);
+        coordinator.setDelimiter(String.valueOf(delimiter));
 
         // Execute computation
         coordinator.executeComputation();
