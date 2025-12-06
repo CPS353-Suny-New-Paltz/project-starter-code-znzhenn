@@ -40,14 +40,17 @@ public class MultithreadedNetworkAPI implements UserAPI{
 	@Override
 	public long executeComputation() {
 		try {
+			return executor.submit(() -> {
             // Run only conceptual API + compute on thread pool
-            return executor.submit(() -> {
-            	single.setInput(inputPath);
-                single.setOutput(outputPath);
-                single.setDelimiter(delimiter);
-                return single.executeComputation();
-        }).get();
-		}	catch (Exception e) {
+			single.setInput(inputPath);
+			single.setOutput(outputPath);
+			single.setDelimiter(delimiter);
+			
+			//execute computation and return result
+			return single.executeComputation();
+
+		}).get();
+	} catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

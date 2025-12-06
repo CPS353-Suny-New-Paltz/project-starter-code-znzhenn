@@ -45,6 +45,9 @@ public class SingleThreadedNetworkAPI implements UserAPI{
 	public long executeComputation() {
 		try { //read numbers from a file
 			
+			Path inPath = Path.of(inputPath).toAbsolutePath();
+	        Path outPath = Path.of(outputPath).toAbsolutePath();
+	        
 			String content = Files.readString(Path.of(inputPath));
             List<String> tokens = Arrays.asList(content.split(delimiter));
 
@@ -60,7 +63,7 @@ public class SingleThreadedNetworkAPI implements UserAPI{
             long result = factorialAPI.factorialOfSum(sum);
             
             //write output to file
-            Files.writeString(Path.of(outputPath), String.valueOf(result));
+            Files.writeString(outPath, String.valueOf(result));
 
             return result;
 		} catch (IOException e) {
