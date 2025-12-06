@@ -19,15 +19,6 @@ public class ComputeEngineIntegrationTest {
 
     @Test
     void testComputeEngineIntegration() {
-    	/*
-    	//empty logic 
-    	DataStorageAPI dataStorage = new DataStorageAPIImplementation();
-        FactorialAPI factorialAPI = new FactorialAPIImplementation();
-        UserAPI userAPI = new UserAPIImplementation();
-        
-        //execute computation
-        long result = userAPI.executeComputation();
-        assertEquals(120L, result);*/
         
         // Initial input and output
         InMemoryInput inputConfig = new InMemoryInput(Arrays.asList(1, 10, 25));
