@@ -6,6 +6,7 @@ import projectapis.network.SingleThreadedNetworkAPI;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class SingleThreadedNetworkAPI implements UserAPI{
 
 	public String outputPath;
 	public String inputPath;
-	public String delimiter;
+	public String delimiter = ",";
 	private FactorialAPI factorialAPI;
 	
 	
@@ -51,7 +52,7 @@ public class SingleThreadedNetworkAPI implements UserAPI{
 	        //ensure output file exists
 	        Files.createDirectories(outPath.getParent());
 	        
-			String content = Files.readString(Path.of(inputPath));
+	        String content = Files.readString(inPath);
             List<String> tokens = Arrays.asList(content.split(delimiter));
 
             int sum = 0;
@@ -61,14 +62,15 @@ public class SingleThreadedNetworkAPI implements UserAPI{
                     sum += Integer.parseInt(token);
                 }
             }
-
-            //computes factorial of the sum
+            // compute factorial of the sum
             long result = factorialAPI.factorialOfSum(sum);
-            
-            //write output to file
-            Files.writeString(outPath, String.valueOf(result));
 
+            // write the result to the file
+            Files.write(outPath, String.valueOf(result).getBytes());
+
+            // return the result
             return result;
+            
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 			}
