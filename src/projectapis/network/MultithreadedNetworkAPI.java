@@ -14,8 +14,8 @@ public class MultithreadedNetworkAPI implements UserAPI{
     private final SingleThreadedNetworkAPI single;
 
     public MultithreadedNetworkAPI(FactorialAPI factorialAPI) {
-        executor = Executors.newFixedThreadPool(4);
-        single = new SingleThreadedNetworkAPI(factorialAPI);
+        this.executor = Executors.newFixedThreadPool(4);
+        this.single = new SingleThreadedNetworkAPI(factorialAPI);
     }
 
     
@@ -39,14 +39,15 @@ public class MultithreadedNetworkAPI implements UserAPI{
 
 	@Override
 	public long executeComputation() {
-        try {
+		try {
+            // Run only conceptual API + compute on thread pool
             return executor.submit(() -> {
-                single.setInput(inputPath);
+            	single.setInput(inputPath);
                 single.setOutput(outputPath);
                 single.setDelimiter(delimiter);
                 return single.executeComputation();
-            }).get();
-        } catch (Exception e) {
+        }).get();
+		}	catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
