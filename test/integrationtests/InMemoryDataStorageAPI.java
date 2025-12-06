@@ -4,6 +4,7 @@ import integrationtests.InMemoryInput;
 import integrationtests.InMemoryOutput;
 
 import java.util.List;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import projectapis.ComputationStatus;
@@ -30,11 +31,16 @@ public class InMemoryDataStorageAPI implements DataStorageAPI {
 	@Override
 	public void storeResults(String outputSource, List<Long> results) {
 		storedResults.clear();
-		storedResults.addAll(results);
-		computationDone = true;
-		for (Long r : results) {
-			output.write(String.valueOf(r));
-		}
+	    storedResults.addAll(results);
+	    computationDone = true;
+	    for (Long r : results) {
+	        try {
+				output.write(String.valueOf(r));
+			} catch (IOException e) {
+				e.printStackTrace();
+			} 
+	    }
+
 	}
 
 	@Override
@@ -49,7 +55,7 @@ public class InMemoryDataStorageAPI implements DataStorageAPI {
 
 	@Override
 	public String loadData() {
-		return "Loaded data"; // simple placeholder
+		return "Loaded data"; // placeholder
 	}
 
 	@Override
