@@ -1,5 +1,6 @@
 package integrationtests;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryInput {
@@ -9,12 +10,16 @@ public class InMemoryInput {
 		this.integers = integers;
 	}
 
-	public List<Integer> getIntegers() {
-		return integers;
-	}
-
 	public List<Integer> getInput() {
 		return integers;
 	}
+
+
+
+	public String getInputString() {
+        return String.join(",", integers.stream()
+                                        .map(String::valueOf)
+                                        .toArray(String[]::new));
+    }
 
 }

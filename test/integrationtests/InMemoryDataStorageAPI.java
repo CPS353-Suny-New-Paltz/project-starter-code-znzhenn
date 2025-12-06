@@ -23,8 +23,9 @@ public class InMemoryDataStorageAPI implements DataStorageAPI {
 
 	@Override
 	public List<Integer> loadIntegers(String inputSource, String delimiter) {
-			return new ArrayList<>(input.getInput);
+	    return new ArrayList<>(input.getInput());
 	}
+
 
 	@Override
 	public void storeResults(String outputSource, List<Long> results) {
