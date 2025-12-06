@@ -50,8 +50,12 @@ public class SingleThreadedNetworkAPI implements UserAPI{
 
             int sum = 0;
             for (String token : tokens) {
-                sum += Integer.parseInt(token.trim());
-		}
+                token = token.trim();
+                if (!token.isEmpty()) {
+                    sum += Integer.parseInt(token);
+                }
+            }
+
             //computes factorial of the sum
             long result = factorialAPI.factorialOfSum(sum);
             
