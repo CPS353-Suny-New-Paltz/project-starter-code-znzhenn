@@ -17,7 +17,7 @@ public class TestUser {
 	}
 
 	public void run(String outputPath) {
-		char delimiter = ';';
+		char delimiter = ','; //changed delimiter to follow my format
 		String inputPath = "test" + File.separatorChar + "testInputFile.test";
 		
 		// TODO 4: Call the appropriate method(s) on the coordinator to get it to 

@@ -51,7 +51,7 @@ public class SingleThreadedNetworkAPI implements UserAPI{
 	        Files.createDirectories(outPath.getParent());
 	        
 	        String content = Files.readString(inPath);
-            List<String> tokens = Arrays.asList(content.split(delimiter));
+	        String[] tokens = content.split(",");
 
             int sum = 0;
             for (String token : tokens) {
