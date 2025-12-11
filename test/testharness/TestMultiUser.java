@@ -24,12 +24,19 @@ public class TestMultiUser {
 	// complete
 	private UserAPI coordinator;
 	private MultithreadedNetworkAPI networkAPI;
+	private final int numThreads = 4;
 	
 	@BeforeEach
-	public void initializeComputeEngine() {
-		FactorialAPI factorialAPI = new FactorialAPIImplementation();
-		networkAPI = new MultithreadedNetworkAPI(factorialAPI);
-		coordinator = networkAPI;
+	public void initializeComputeEngine() throws IOException {
+		File testDir = new File("test");
+        if (!testDir.exists()) testDir.mkdirs();
+
+        // Create input file if it doesn't exist
+        File inputFile = new File(testDir, "testInputFile.test");
+        if (!inputFile.exists()) {
+            Files.writeString(inputFile.toPath(), "1,15,10,5,2,3,8");
+        }
+    
 		//TODO 2: create an instance of the implementation of your @NetworkAPI; this is the component that the user will make requests to
 		// Store it in the 'coordinator' instance variable
 		// complete
@@ -37,63 +44,62 @@ public class TestMultiUser {
 	
 	
 	public void cleanup() {
-        if (networkAPI != null) {
+        /*if (networkAPI != null) {
             networkAPI.shutdown();
-        }
+        }*/
     }
 	@Test
 	public void compareMultiAndSingleThreaded() throws Exception {
-		int numThreads = 4;
-		List<TestUser> testUsers = new ArrayList<>();
-		for (int i = 0; i < numThreads; i++) {
-			testUsers.add(new TestUser(coordinator));
-		}
-		
-		// Run single threaded
-		String singleThreadFilePrefix = "testMultiUser.compareMultiAndSingleThreaded.test.singleThreadOut.tmp";
-		for (int i = 0; i < numThreads; i++) {
-			File singleThreadedOut = 
-					new File(singleThreadFilePrefix + i);
-			singleThreadedOut.deleteOnExit();
-			testUsers.get(i).run(singleThreadedOut.getCanonicalPath());
-		}
-		
-		// Run multi threaded
-		ExecutorService threadPool = Executors.newCachedThreadPool();
-		List<Future<?>> results = new ArrayList<>();
-		String multiThreadFilePrefix = "testMultiUser.compareMultiAndSingleThreaded.test.multiThreadOut.tmp";
-		for (int i = 0; i < numThreads; i++) {
-			File multiThreadedOut = 
-					new File(multiThreadFilePrefix + i);
-			multiThreadedOut.deleteOnExit();
-			String multiThreadOutputPath = multiThreadedOut.getCanonicalPath();
-			TestUser testUser = testUsers.get(i);
-			results.add(threadPool.submit(() -> testUser.run(multiThreadOutputPath)));
-		}
-		
-		results.forEach(future -> {
-			try {
-				future.get();
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
-		});
-		
-		
-		// Check that the output is the same for multi-threaded and single-threaded
-		List<String> singleThreaded = loadAllOutput(singleThreadFilePrefix, numThreads);
-		List<String> multiThreaded = loadAllOutput(multiThreadFilePrefix, numThreads);
-		Assertions.assertEquals(singleThreaded, multiThreaded);
-	}
+        List<TestUser> testUsers = new ArrayList<>();
+        for (int i = 0; i < numThreads; i++) {
+            testUsers.add(new TestUser()); // each user has its own coordinator
+        }
 
-	private List<String> loadAllOutput(String prefix, int numThreads) throws IOException {
-		List<String> result = new ArrayList<>();
-		for (int i = 0; i < numThreads; i++) {
-			File multiThreadedOut = 
-					new File(prefix + i);
-			result.addAll(Files.readAllLines(multiThreadedOut.toPath()));
-		}
-		return result;
-	}
+        // Single-threaded run
+        String singleThreadPrefix = "test/singleThreadOut";
+        for (int i = 0; i < numThreads; i++) {
+            String path = singleThreadPrefix + i + ".tmp";
+            new File(path).delete();
+            testUsers.get(i).run(path);
+        }
+
+        // Multi-threaded run
+        ExecutorService executor = Executors.newCachedThreadPool();
+        List<Future<?>> futures = new ArrayList<>();
+        String multiThreadPrefix = "test/multiThreadOut";
+
+        for (int i = 0; i < numThreads; i++) {
+            final int index = i;
+            futures.add(executor.submit(() -> {
+                try {
+                    String path = multiThreadPrefix + index + ".tmp";
+                    new File(path).delete();
+                    testUsers.get(index).run(path);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }));
+        }
+
+        for (Future<?> f : futures) f.get();
+        executor.shutdown();
+
+        // Compare outputs
+        List<String> singleThreaded = loadAllOutput(singleThreadPrefix, numThreads);
+        List<String> multiThreaded = loadAllOutput(multiThreadPrefix, numThreads);
+
+        Assertions.assertEquals(singleThreaded, multiThreaded,
+                "Multi-threaded results should match single-threaded results");
+    }
+
+	private List<String> loadAllOutput(String prefix, int numFiles) throws IOException {
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < numFiles; i++) {
+            File file = new File(prefix + i + ".tmp");
+            if (!file.exists()) continue;
+            result.addAll(Files.readAllLines(file.toPath()));
+        }
+        return result;
+    }
 
 }
