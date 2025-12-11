@@ -29,7 +29,9 @@ public class TestMultiUser {
 	@BeforeEach
 	public void initializeComputeEngine() throws IOException {
 		File testDir = new File("test");
-        if (!testDir.exists()) testDir.mkdirs();
+        if (!testDir.exists()) {
+        	testDir.mkdirs();
+        }
 
         // Create input file if it doesn't exist
         File inputFile = new File(testDir, "testInputFile.test");
@@ -81,7 +83,9 @@ public class TestMultiUser {
             }));
         }
 
-        for (Future<?> f : futures) f.get();
+        for (Future<?> f : futures) {
+        	f.get();
+        }
         executor.shutdown();
 
         // Compare outputs
@@ -96,7 +100,9 @@ public class TestMultiUser {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < numFiles; i++) {
             File file = new File(prefix + i + ".tmp");
-            if (!file.exists()) continue;
+            if (!file.exists()) {
+            	continue;
+            }
             result.addAll(Files.readAllLines(file.toPath()));
         }
         return result;
