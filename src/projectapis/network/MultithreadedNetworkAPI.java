@@ -2,6 +2,7 @@ package projectapis.network;
 
 import projectapis.conceptual.FactorialAPI;
 import projectapis.process.DataStorageAPI;
+import projectapis.process.DataStorageAPIImplementation;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -25,6 +26,12 @@ public class MultithreadedNetworkAPI implements UserAPI{
     public MultithreadedNetworkAPI(DataStorageAPI dataStorage, FactorialAPI factorialAPI) {
     	this(dataStorage, factorialAPI, 4);
     }
+    
+    //test usage only
+    public MultithreadedNetworkAPI(FactorialAPI factorialAPI) {
+        this(new DataStorageAPIImplementation(), factorialAPI, 4); 
+    }
+
 
     // pool thread
     public MultithreadedNetworkAPI(DataStorageAPI dataStorage, FactorialAPI factorialAPI, int maxThreads) {
