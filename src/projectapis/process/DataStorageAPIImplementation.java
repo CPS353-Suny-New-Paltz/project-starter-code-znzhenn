@@ -18,6 +18,7 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	private List<Long> savedResults = new ArrayList<>();
 	private ComputationStatus status = ComputationStatus.NOT_EXISTS;
 	private String savedData = "";
+	private String lastDelimiter = ",";
 
 	public DataStorageAPIImplementation() {
 	}
@@ -65,6 +66,9 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	    	//invalid int
 	    }
 
+	    //update last delimiter
+	    lastDelimiter = (delimiter == null || delimiter.isBlank()) ? "," : delimiter;
+
 	    //updates based on if numbers were loaded
 	    status = loadedNumbers.isEmpty()
 	             ? ComputationStatus.NOT_EXISTS
@@ -73,15 +77,18 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 	    //save as string
 	    if (!loadedNumbers.isEmpty()) {
 	        savedData = String.join(
-	                delimiter,
+	                lastDelimiter,
 	                loadedNumbers.stream()
 	                             .map(String::valueOf)
 	                             .collect(Collectors.toList()));
-	    } //stored as long
-	    savedResults.clear();
+	    } else{
+	    	savedData = "";//stored as long
+	    }
+	    
+	    /*savedResults.clear();
 	    for (Integer i : loadedNumbers) {
 	        savedResults.add(i.longValue());
-	    }
+	    }*/
 
 
 	        return loadedNumbers;
@@ -101,10 +108,15 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 		savedResults.addAll(results);
 		status = ComputationStatus.EXISTS;
 		
+		//writes results joined
+		String useDelimiter = (lastDelimiter == null || lastDelimiter.isBlank()) ? "," : lastDelimiter;
+
+		
+		
 		//write to one comma-seperated line
 		String line = results.stream()
 				.map(String::valueOf)
-				.collect(Collectors.joining(","));
+				.collect(Collectors.joining(useDelimiter));
 		
 		try (PrintWriter writer = new PrintWriter(new File(outputSource))) {
 			writer.print(line);
@@ -112,7 +124,6 @@ public class DataStorageAPIImplementation implements DataStorageAPI {
 			status = ComputationStatus.NOT_EXISTS;
 			return; //don't print
 		}
-		
 		
 		
 		/* writes incorrect lines
