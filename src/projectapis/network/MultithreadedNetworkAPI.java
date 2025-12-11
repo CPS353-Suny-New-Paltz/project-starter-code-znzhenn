@@ -15,7 +15,7 @@ public class MultithreadedNetworkAPI implements UserAPI{
 
     public MultithreadedNetworkAPI(FactorialAPI factorialAPI) {
         this.executor = Executors.newFixedThreadPool(4);
-        this.single = new SingleThreadedNetworkAPI(factorialAPI);
+        this.single = new SingleThreadedNetworkAPI(dataStorage, factorialAPI);
     }
 
     

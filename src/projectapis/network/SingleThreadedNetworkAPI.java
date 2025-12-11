@@ -1,10 +1,11 @@
 package projectapis.network;
 import projectapis.conceptual.FactorialAPI;
-
+import projectapis.process.DataStorageAPI;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,10 +16,15 @@ public class SingleThreadedNetworkAPI implements UserAPI{
 	public String inputPath;
 	public String delimiter = ",";
 	private FactorialAPI factorialAPI;
+	private final DataStorageAPI dataStorage;
 	
 	
-	public SingleThreadedNetworkAPI(FactorialAPI factorialAPI) {
-	    this.factorialAPI = factorialAPI;
+	public SingleThreadedNetworkAPI(DataStorageAPI dataStorage, FactorialAPI factorialAPI) {
+	    if (dataStorage == null || factorialAPI == null) {
+	    	throw new IllegalArgumentException("dependencies can't be null");
+	    }
+	    this.dataStorage = dataStorage;
+		this.factorialAPI = factorialAPI;
 	}
 
 	
@@ -42,10 +48,35 @@ public class SingleThreadedNetworkAPI implements UserAPI{
 
 	@Override
 	public long executeComputation() {
-		try { //read numbers from a file
-			
-			Path inPath = Path.of(inputPath).toAbsolutePath();
-	        Path outPath = Path.of(outputPath).toAbsolutePath();
+		//validate data
+		if (inputPath == null || inputPath.isBlank() || outputPath == null || outputPath.isBlank()) {
+            return 0L;
+        }
+		
+		//load inputs from dataStorageAPI
+		List<Integer> numbers = dataStorage.loadIntegers(inputPath, delimiter);
+        if (numbers == null || numbers.isEmpty()) {
+            return 0L;
+        }
+        
+        List<Long> results = new ArrayList<>();
+        for (int number : numbers) {
+            if (number < 0) {
+                // skip negatives (DataStorage already filters them, but just in case)
+                continue;
+            }
+            long value = factorialAPI.computeDigitFactorialSum(number);
+            results.add(value);
+        }
+        // store results
+        dataStorage.storeResults(outputPath, results);
+
+        
+        // return last result
+        return results.isEmpty() ? 0L : results.get(results.size() - 1);
+	}
+        
+        /*
 	        
 	        //ensure output file exists
 	        Files.createDirectories(outPath.getParent());
@@ -69,9 +100,6 @@ public class SingleThreadedNetworkAPI implements UserAPI{
             // return the result
             return result;
             
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-			}
-		}
+		} */
 }
 	
