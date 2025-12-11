@@ -3,8 +3,6 @@ package testharness;
 import java.io.File;
 import projectapis.network.UserAPI;
 
-import projectapis.conceptual.FactorialAPI;
-
 
 public class TestUser {
 	
