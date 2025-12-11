@@ -1,5 +1,8 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id 'eclipse'
+}
 
 eclipse.project.name = 'sweProjectJenn' 
 
@@ -35,3 +38,16 @@ test {
     useJUnitPlatform()
     	ignoreFailures = false
 }
+
+checkstyle {
+	toolVersion = '10.12.0'  // pin to a stable Checkstyle version
+    configFile = file('checkstyle_checks.xml')
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}
+
