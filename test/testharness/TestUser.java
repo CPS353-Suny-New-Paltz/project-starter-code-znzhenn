@@ -1,9 +1,11 @@
 package testharness;
 
 import java.io.File;
-import projectapis.network.UserAPI;
 
 import projectapis.conceptual.FactorialAPI;
+import projectapis.conceptual.FactorialAPIImplementation;
+import projectapis.network.MultithreadedNetworkAPI;
+import projectapis.network.UserAPI;
 
 
 public class TestUser {
@@ -12,14 +14,19 @@ public class TestUser {
 	// @NetworkAPI interface; also update the parameter passed to the constructor
 	private final UserAPI coordinator;
 
-	public TestUser(UserAPI coordinator) {
-		this.coordinator = coordinator;
-	}
+	public TestUser() {
+        FactorialAPI factorialAPI = new FactorialAPIImplementation();
+        this.coordinator = new MultithreadedNetworkAPI(factorialAPI);
+    }
 
 	public void run(String outputPath) {
 		char delimiter = ','; //changed delimiter to follow my format
-		String inputPath = "test" + File.separatorChar + "testInputFile.test";
+		String inputPath = "test/testInputFile.test";
+		// String inputPath = "test" + File.separatorChar + "testInputFile.test";
 		
+		File outFile = new File(outputPath);
+        outFile.getParentFile().mkdirs();
+
 		// TODO 4: Call the appropriate method(s) on the coordinator to get it to 
 		// run the compute job specified by inputPath, outputPath, and delimiter
 		
@@ -32,4 +39,5 @@ public class TestUser {
         coordinator.executeComputation();
 	}
 
+	
 }
