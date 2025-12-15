@@ -5,6 +5,7 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 import project.datastore.DataStoreProto.ReadDataResponse;
 import project.datastore.DataStoreProto.ReadDataRequest;
+
 import project.datastore.DataStoreProto.WriteDataRequest;
 import project.datastore.DataStoreProto.WriteDataResponse;
 import project.datastore.DataStoreServiceGrpc.DataStoreServiceImplBase;
@@ -17,14 +18,15 @@ public class DataStoreServer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         Server server = ServerBuilder.forPort(50051)
-                .addService(new DataStoreServiceImpl())
+                .addService(new DataStoreServiceImplementation(new DataStorageAPIImplementation()))
                 .build();
 
         server.start();
-        System.out.println("Data Store gRPC server started on port 50051");
+        System.out.println("Data Store gRPC server started on port 50053");
         server.awaitTermination();
     }
 
+    /*
     static class DataStoreServiceImpl extends DataStoreServiceImplBase {
         private final DataStorageAPIImplementation storage = new DataStorageAPIImplementation();
 
@@ -51,5 +53,5 @@ public class DataStoreServer {
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         }
-    }
+    }*/
 }

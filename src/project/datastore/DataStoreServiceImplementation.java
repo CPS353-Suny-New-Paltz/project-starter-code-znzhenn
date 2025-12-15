@@ -1,11 +1,8 @@
 package project.datastore;
 
 import io.grpc.stub.StreamObserver;
-import project.datastore.DataStoreProto.ReadDataRequest;
-import project.datastore.DataStoreProto.ReadDataResponse;
-import project.datastore.DataStoreProto.WriteDataRequest;
-import project.datastore.DataStoreProto.WriteDataResponse;
-
+import project.datastore.DataStoreProto.*;
+import project.datastore.DataStoreServiceGrpc;
 import projectapis.process.DataStorageAPI;
 
 import java.util.List;
@@ -18,9 +15,11 @@ public class DataStoreServiceImplementation extends DataStoreServiceGrpc.DataSto
         this.dataStorage = dataStorage;
     }
 
+    @Override
     public void readData(ReadDataRequest request, StreamObserver<ReadDataResponse> responseObserver) {
         try {
-            List<Integer> numbers = dataStorage.loadIntegers(request.getInputFile(), ",");
+            String delimiter = ","; // default
+            List<Integer> numbers = dataStorage.loadIntegers(request.getInputFile(), delimiter);
             ReadDataResponse response = ReadDataResponse.newBuilder()
                     .addAllNumbers(numbers)
                     .build();
@@ -31,10 +30,10 @@ public class DataStoreServiceImplementation extends DataStoreServiceGrpc.DataSto
         }
     }
 
+    @Override
     public void writeData(WriteDataRequest request, StreamObserver<WriteDataResponse> responseObserver) {
         try {
             List<Integer> numbers = request.getNumbersList();
-            // Convert Integer list to Long list for your storage API
             List<Long> longNumbers = numbers.stream().map(Integer::longValue).toList();
             dataStorage.storeResults(request.getOutputFile(), longNumbers);
 
