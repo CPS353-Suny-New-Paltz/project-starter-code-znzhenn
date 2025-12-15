@@ -2,7 +2,7 @@ package test;
 import projectapis.conceptual.FactorialAPI;
 import projectapis.conceptual.FactorialAPIImplementation;
 
-public class BottleneckTest {
+public class FactorialBottleneckBenchmarkTest {
 
     public static void main(String[] args) {
         FactorialAPI api = new FactorialAPIImplementation();
