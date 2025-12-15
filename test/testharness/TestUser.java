@@ -1,6 +1,7 @@
 package testharness;
 
 import java.io.File;
+import org.junit.jupiter.api.Test;
 
 import projectapis.conceptual.FactorialAPI;
 import projectapis.conceptual.FactorialAPIImplementation;
@@ -38,6 +39,11 @@ public class TestUser {
         // Execute computation
         coordinator.executeComputation();
 	}
+	
+	@Test
+    public void explicitConstructorCallForSmokeTest() {
+        new MultithreadedNetworkAPI(new FactorialAPIImplementation());
+    }
 
 	
 }

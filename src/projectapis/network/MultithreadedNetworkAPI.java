@@ -4,7 +4,6 @@ import projectapis.conceptual.FactorialAPI;
 import projectapis.process.DataStorageAPI;
 import projectapis.process.DataStorageAPIImplementation;
 
-import java.util.concurrent.;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
