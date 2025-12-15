@@ -38,7 +38,7 @@ public class UserComputeServiceImplementation extends UserComputeServiceGrpc.Use
 
             String delimiter = request.hasDelimiter() ? request.getDelimiter() : ",";
 
-            // lad numbers from input file (if provided)
+            // load numbers from input file (if provided)
             List<Integer> allNumbers = new ArrayList<>();
             if (request.hasInputFile()) {
                 File inputFile = new File(request.getInputFile());
@@ -54,7 +54,9 @@ public class UserComputeServiceImplementation extends UserComputeServiceGrpc.Use
                                         if (value >= 0) { // skip negatives
                                             allNumbers.add(value);
                                         }
-                                    } catch (NumberFormatException ignored) {}
+                                    } catch (NumberFormatException ignored) {
+                                    	// invalid numbers are skipped
+                                    }
                                 }
                             }
                         }
