@@ -60,8 +60,7 @@ public class UserComputeClient {
         try 
         {
             return blockingStub.submitJob(builder.build());
-        } catch (io.grpc.StatusRuntimeException e) 
-        {
+        } catch (io.grpc.StatusRuntimeException e) {
             return project.usercompute.UserComputeProto.JobResponse.newBuilder()
                     .setSuccess(false)
                     .setMessage("RPC failed: " + e.getMessage())
