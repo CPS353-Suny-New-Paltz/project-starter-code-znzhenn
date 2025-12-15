@@ -8,3 +8,7 @@
 
 
 ![Sum of Factorials API Diagram](images/checkpoint2diagram.jpeg)
+
+- **Checkpoint 8: Performance Tuning **
+	- Potential Bottlenecks identified:
+	- 
