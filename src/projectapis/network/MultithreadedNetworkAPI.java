@@ -33,13 +33,19 @@ public class MultithreadedNetworkAPI implements UserAPI {
     }
 
     @Override
-    public void setInput(String input) { this.inputPath = input; }
+    public void setInput(String input) { 
+    	this.inputPath = input; 
+    }
 
     @Override
-    public void setOutput(String output) { this.outputPath = output; }
+    public void setOutput(String output) { 
+    	this.outputPath = output; 
+    }
 
     @Override
-    public void setDelimiter(String delimiter) { if(delimiter!=null) this.delimiter = delimiter; }
+    public void setDelimiter(String delimiter) { 
+    	if(delimiter!=null) this.delimiter = delimiter; 
+    }
 
     @Override
     public long executeComputation() {

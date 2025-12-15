@@ -2,13 +2,6 @@ package project.datastore;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import io.grpc.stub.StreamObserver;
-import project.datastore.DataStoreProto.ReadDataResponse;
-import project.datastore.DataStoreProto.ReadDataRequest;
-
-import project.datastore.DataStoreProto.WriteDataRequest;
-import project.datastore.DataStoreProto.WriteDataResponse;
-import project.datastore.DataStoreServiceGrpc.DataStoreServiceImplBase;
 import projectapis.process.DataStorageAPIImplementation;
 
 import java.io.IOException;
@@ -18,7 +11,7 @@ public class DataStoreServer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         Server server = ServerBuilder.forPort(50051)
-                .addService(new DataStoreServiceImplementation(new DataStorageAPIImplementation()))
+        		.addService(new DataStoreServiceImplementation(new DataStorageAPIImplementation()))
                 .build();
 
         server.start();
