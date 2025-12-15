@@ -42,18 +42,21 @@ public class GrpcIntegrationTest {
     }
 
     @Test
-    public void testInlineValuesOnly() {
-        UserComputeClient client = new UserComputeClient("localhost", port);
-
-        int[] inlineValues = {1, 2, 3, 4}; // sum of digits = 10 | factorial 3628800?
+    public void testInlineValuesOnly() throws Exception {
+        // create empty input file
+        File tempInput = File.createTempFile("empty_input_", ".txt");
         String outputFile = "test_output_inline.txt";
 
-        var response = client.submitJob(null, outputFile, inlineValues, ",");
+        UserComputeClient client = new UserComputeClient("localhost", port);
+        int[] inlineValues = {1, 2, 3, 4};
+
+        var response = client.submitJob(tempInput.getAbsolutePath(), outputFile, inlineValues, ",");
 
         assertTrue(response.getSuccess());
         assertTrue(response.getMessage().contains("Last result:"));
 
-        // clean up file
+        // cleanup
+        tempInput.delete();
         new File(outputFile).delete();
     }
 
@@ -65,15 +68,15 @@ public class GrpcIntegrationTest {
             writer.println("1,2,3,4");
         }
 
-        UserComputeClient client = new UserComputeClient("localhost", port);
         String outputFile = "test_output_file.txt";
+        UserComputeClient client = new UserComputeClient("localhost", port);
 
         var response = client.submitJob(tempInput.getAbsolutePath(), outputFile, new int[]{}, ",");
 
         assertTrue(response.getSuccess());
         assertTrue(response.getMessage().contains("Last result:"));
 
-        // clean up
+        // cleanup
         tempInput.delete();
         new File(outputFile).delete();
     }
@@ -96,7 +99,7 @@ public class GrpcIntegrationTest {
         assertTrue(response.getSuccess());
         assertTrue(response.getMessage().contains("Last result:"));
 
-        // clean up
+        // cleanup
         tempInput.delete();
         new File(outputFile).delete();
     }
