@@ -43,13 +43,27 @@ public class GrpcIntegrationTest {
 
     @Test
     public void testInlineValuesOnly() {
-       
+        UserComputeClient client = new UserComputeClient("localhost", port);
+
+        int[] inlineValues = {1, 2, 3, 4}; // sum of digits = 10 | factorial 3628800?
+        String outputFile = "test_output_inline.txt";
+
+        var response = client.submitJob(null, outputFile, inlineValues, ",");
+
+        assertTrue(response.getSuccess());
+        assertTrue(response.getMessage().contains("Last result:"));
+
+        // clean up file
+        new File(outputFile).delete();
     }
 
     @Test
     public void testFileInputOnly() throws Exception {
         
     }
-        
+
+    @Test
+    public void testFileAndInlineCombined() throws Exception {
+       
     }
 }
