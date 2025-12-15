@@ -59,11 +59,45 @@ public class GrpcIntegrationTest {
 
     @Test
     public void testFileInputOnly() throws Exception {
-        
+        // temp input file
+        File tempInput = File.createTempFile("input_file_test_", ".txt");
+        try (PrintWriter writer = new PrintWriter(tempInput)) {
+            writer.println("1,2,3,4");
+        }
+
+        UserComputeClient client = new UserComputeClient("localhost", port);
+        String outputFile = "test_output_file.txt";
+
+        var response = client.submitJob(tempInput.getAbsolutePath(), outputFile, new int[]{}, ",");
+
+        assertTrue(response.getSuccess());
+        assertTrue(response.getMessage().contains("Last result:"));
+
+        // clean up
+        tempInput.delete();
+        new File(outputFile).delete();
     }
 
     @Test
     public void testFileAndInlineCombined() throws Exception {
-       
+        // file input: 1,2
+        File tempInput = File.createTempFile("input_file_test_", ".txt");
+        try (PrintWriter writer = new PrintWriter(tempInput)) {
+            writer.println("1,2");
+        }
+
+        // inline: 3,4
+        int[] inlineValues = {3, 4};
+        String outputFile = "test_output_combined.txt";
+
+        UserComputeClient client = new UserComputeClient("localhost", port);
+        var response = client.submitJob(tempInput.getAbsolutePath(), outputFile, inlineValues, ",");
+
+        assertTrue(response.getSuccess());
+        assertTrue(response.getMessage().contains("Last result:"));
+
+        // clean up
+        tempInput.delete();
+        new File(outputFile).delete();
     }
 }
