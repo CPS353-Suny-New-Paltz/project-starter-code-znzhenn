@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+package project.datastore.proto;
+
+option java_package = "project.datastore";
+option java_outer_classname = "DataStoreProto";
+
+service DataStoreService {
+  rpc ReadData (ReadDataRequest) returns (ReadDataResponse);
+  rpc WriteData (WriteDataRequest) returns (WriteDataResponse);
+}
+
+message ReadDataRequest {
+  optional string input_file = 1;
+}
+
+message ReadDataResponse {
+  repeated int32 numbers = 1;
+}
+
+message WriteDataRequest {
+  repeated int32 numbers = 1;
+  optional string output_file = 2;
+}
+
+message WriteDataResponse {
+  optional bool success = 1;
+  optional string message = 2;
+}
