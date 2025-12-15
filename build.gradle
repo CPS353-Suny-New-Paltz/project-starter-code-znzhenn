@@ -21,7 +21,7 @@ def protocVersion = protobufVersion
 sourceSets {
 	main {
 		proto{
-		srcDirs =['protobuf']
+			srcDirs =['protobuf']
 		}
 	  java {
 		srcDirs = ['src',
@@ -39,6 +39,29 @@ sourceSets {
 repositories {
     mavenCentral()
 }
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protobufVersion}"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.plugins {
+                grpc {}
+            }
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    dependsOn tasks.withType(com.google.protobuf.gradle.GenerateProtoTask)
+}
+
 
 dependencies {
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.10.2')
