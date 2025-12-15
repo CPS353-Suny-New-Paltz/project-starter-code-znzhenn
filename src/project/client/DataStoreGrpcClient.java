@@ -2,7 +2,9 @@ package project.client;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import project.datastore.DataStoreProto.*;
+import project.datastore.DataStoreProto.ReadDataRequest;
+import project.datastore.DataStoreProto.ReadDataResponse;
+import project.datastore.DataStoreProto.WriteDataRequest;
 import project.datastore.DataStoreServiceGrpc;
 import projectapis.process.DataStorageAPI;
 import projectapis.ComputationStatus;
@@ -39,14 +41,19 @@ public class DataStoreGrpcClient implements DataStorageAPI {
     }
 
     @Override
-    public long fetchComputation() { return 0; }
+    public long fetchComputation() { 
+    	return 0; }
 
     @Override
-    public ComputationStatus getComputationStatus() { return ComputationStatus.EXISTS; }
+    public ComputationStatus getComputationStatus() { 
+    	return ComputationStatus.EXISTS; }
 
     @Override
-    public String loadData() { return ""; }
+    public String loadData() { 
+    	return ""; }
 
     @Override
-    public void saveComputation() { }
+    public void saveComputation() { 
+    	//save
+    }
 }
