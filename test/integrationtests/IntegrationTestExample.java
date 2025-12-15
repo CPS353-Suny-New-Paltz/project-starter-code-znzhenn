@@ -36,33 +36,6 @@ public class IntegrationTestExample {
     	assertTrue(result >= 0, "Result should be non-negative");
     	System.out.println("Results: " + output.getOutput());
 
-    	/*
-    	InMemoryInput input = null;
-		InMemoryOutput output = null;	*/
-    	
-		/*
-    	DataStorageAPI dataStorage = new InMemoryDataStorageAPI(input, output);
-        FactorialAPI factorialAPI = new FactorialAPIImplementation();
-        UserAPI userAPI = new UserAPIImplementation(dataStorage, factorialAPI);
-    	 */
-        
-        // Run your computation
-        /*String inputFile = Path.of("test/testInputFile.test").toAbsolutePath().toString();
-        userAPI.setInput(inputFile);
-
-        String outputFile = Path.of("test/fakeOutput.txt").toAbsolutePath().toString();
-        userAPI.setOutput(outputFile);*/
-
-        /*	
-        userAPI.setInput("dummy"); 
-        userAPI.setOutput("output.txt");
-        userAPI.setDelimiter(",");
-
-        long result = userAPI.executeComputation();
-        assertTrue(result >= 0, "Result should be non-negative");
-
-        //System.out.println("In-memory results: " + output.getOutput());
-        */
         
     }
 }

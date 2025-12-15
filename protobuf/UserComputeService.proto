@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+package project.usercompute.proto;
+
+option java_package = "project.usercompute";
+option java_outer_classname = "UserComputeProto";
+
+service UserComputeService {
+  rpc SubmitJob (JobRequest) returns (JobResponse);
+}
+
+message JobRequest {
+  optional string input_file = 1;
+  repeated int32 inline_values = 2;
+  optional string output_file = 3;
+  optional string delimiter = 4;
+}
+
+message JobResponse {
+  optional bool success = 1;
+  optional string message = 2;
+}
