@@ -1,34 +1,54 @@
 package project.datastore;
 
 import io.grpc.stub.StreamObserver;
-import project.datastore.DataStoreServiceGrpc;
-import project.datastore.DataStoreProto;
+import project.datastore.DataStoreProto.*;
+import projectapis.process.DataStorageAPI;
+
+import java.util.List;
 
 public class DataStoreServiceImplementation extends DataStoreServiceGrpc.DataStoreServiceImplBase {
 
-    @Override
-    public void readData(DataStoreProto.ReadDataRequest request, 
-                         StreamObserver<DataStoreProto.ReadDataResponse> responseObserver) {
-        // Example: Create a response
-        DataStoreProto.ReadDataResponse response = DataStoreProto.ReadDataResponse.newBuilder()
-                .addNumbers(1)   // example value
-                .addNumbers(2)
-                .build();
+    private final DataStorageAPI dataStorage;
 
-        responseObserver.onNext(response);
-        responseObserver.onCompleted();
+    public DataStoreServiceImplementation(DataStorageAPI dataStorage) {
+        this.dataStorage = dataStorage;
     }
 
     @Override
-    public void writeData(DataStoreProto.WriteDataRequest request, 
-                          StreamObserver<DataStoreProto.WriteDataResponse> responseObserver) {
-        // Example: pretend we wrote the data successfully
-        DataStoreProto.WriteDataResponse response = DataStoreProto.WriteDataResponse.newBuilder()
-                .setSuccess(true)
-                .setMessage("Data written successfully")
-                .build();
+    public void readData(ReadDataRequest request, StreamObserver<ReadDataResponse> responseObserver) {
+        try {
+            List<Integer> numbers = dataStorage.loadIntegers(request.getInputFile(), ",");
+            ReadDataResponse response = ReadDataResponse.newBuilder()
+                    .addAllNumbers(numbers)
+                    .build();
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+        } catch (Exception e) {
+            responseObserver.onError(e);
+        }
+    }
 
-        responseObserver.onNext(response);
-        responseObserver.onCompleted();
+    @Override
+    public void writeData(WriteDataRequest request, StreamObserver<WriteDataResponse> responseObserver) {
+        try {
+            List<Integer> numbers = request.getNumbersList();
+            // Convert Integer list to Long list for your storage API
+            List<Long> longNumbers = numbers.stream().map(Integer::longValue).toList();
+            dataStorage.storeResults(request.getOutputFile(), longNumbers);
+
+            WriteDataResponse response = WriteDataResponse.newBuilder()
+                    .setSuccess(true)
+                    .setMessage("Data stored successfully")
+                    .build();
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+        } catch (Exception e) {
+            WriteDataResponse response = WriteDataResponse.newBuilder()
+                    .setSuccess(false)
+                    .setMessage("Error: " + e.getMessage())
+                    .build();
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+        }
     }
 }
