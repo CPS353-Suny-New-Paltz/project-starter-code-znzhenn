@@ -31,4 +31,9 @@ public class FactorialBottleneckBenchmarkTest {
         System.out.println("Last result: " + last);
         System.out.println("Execution time (ms): " + ((end - start) / 1_000_000));
     }
+    
+    /* results
+     * last result: 63
+     * execution time (ms)11
+     * */
 }
