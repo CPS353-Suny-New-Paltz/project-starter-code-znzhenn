@@ -4,11 +4,11 @@ import projectapis.conceptual.FactorialAPI;
 import projectapis.process.DataStorageAPI;
 import projectapis.process.DataStorageAPIImplementation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.ArrayList;
 
 public class MultithreadedNetworkAPI implements UserAPI {
 
@@ -20,15 +20,19 @@ public class MultithreadedNetworkAPI implements UserAPI {
     private final ExecutorService executor;
 
     public MultithreadedNetworkAPI(FactorialAPI factorialAPI) {
-        this(new DataStorageAPIImplementation(), factorialAPI, 4); // default datastore + 4 threads
+        this(new DataStorageAPIImplementation(), factorialAPI, 4);
     }
-    
-    public MultithreadedNetworkAPI(DataStorageAPI dataStorage, FactorialAPI factorialAPI, int maxThreads) {
+
+    public MultithreadedNetworkAPI(
+            DataStorageAPI dataStorage,
+            FactorialAPI factorialAPI,
+            int maxThreads) {
+
         if (dataStorage == null || factorialAPI == null) {
-        	throw new IllegalArgumentException("dependencies can't be null");
+            throw new IllegalArgumentException("dependencies can't be null");
         }
         if (maxThreads <= 0) {
-        	throw new IllegalArgumentException("maxThreads must be > 0");
+            throw new IllegalArgumentException("maxThreads must be > 0");
         }
 
         this.dataStorage = dataStorage;
@@ -37,31 +41,33 @@ public class MultithreadedNetworkAPI implements UserAPI {
     }
 
     @Override
-    public void setInput(String input) { 
-    	this.inputPath = input; 
+    public void setInput(String input) {
+        this.inputPath = input;
     }
 
     @Override
-    public void setOutput(String output) { 
-    	this.outputPath = output; 
+    public void setOutput(String output) {
+        this.outputPath = output;
     }
 
     @Override
-    public void setDelimiter(String delimiter) { 
-    	if(delimiter!=null) {
-    		this.delimiter = delimiter; 
-    	}
+    public void setDelimiter(String delimiter) {
+        if (delimiter != null) {
+            this.delimiter = delimiter;
+        }
     }
 
     @Override
     public long executeComputation() {
-        if (inputPath == null || inputPath.isBlank() || outputPath == null || outputPath.isBlank()) {
-        	return 0L;
+        if (inputPath == null || inputPath.isBlank()
+                || outputPath == null || outputPath.isBlank()) {
+            return 0L;
         }
 
-        List<Integer> numbers = dataStorage.loadIntegers(inputPath, delimiter);
+        List<Integer> numbers =
+                dataStorage.loadIntegers(inputPath, delimiter);
         if (numbers.isEmpty()) {
-        	return 0L;
+            return 0L;
         }
 
         List<Future<Long>> futures = new ArrayList<>();
@@ -69,24 +75,26 @@ public class MultithreadedNetworkAPI implements UserAPI {
 
         for (int n : numbers) {
             if (n < 0) {
-            	continue;
-            } 
-            futures.add(executor.submit(() -> factorialAPI.computeDigitFactorialSum(n)));
+                continue;
+            }
+            futures.add(
+                    executor.submit(
+                            () -> factorialAPI.computeDigitFactorialSum(n)));
         }
 
         for (Future<Long> f : futures) {
-            try { 
-            	results.add(f.get()); 
-            } catch (Exception e) { 
-            	results.add(0L); 
-            	}
+            try {
+                results.add(f.get());
+            } catch (Exception e) {
+                results.add(0L);
+            }
         }
 
         dataStorage.storeResults(outputPath, results);
-        return results.isEmpty() ? 0L : results.get(results.size() - 1);
+        return results.get(results.size() - 1);
     }
 
-    public void shutdown() { 
-    	executor.shutdown(); 
+    public void shutdown() {
+        executor.shutdown();
     }
 }

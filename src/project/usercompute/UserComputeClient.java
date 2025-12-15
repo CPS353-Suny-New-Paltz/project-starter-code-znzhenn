@@ -13,8 +13,9 @@ public class UserComputeClient {
 
         System.out.print("Enter inline numbers separated by commas (optional): ");
         String inlineInput = scanner.nextLine().trim();
-        int[] inlineValues = inlineInput.isEmpty() ? new int[0] :
-                Arrays.stream(inlineInput.split(","))
+        int[] inlineValues = inlineInput.isEmpty()
+                ? new int[0]
+                : Arrays.stream(inlineInput.split(","))
                         .map(String::trim)
                         .mapToInt(Integer::parseInt)
                         .toArray();
@@ -24,10 +25,14 @@ public class UserComputeClient {
 
         System.out.print("Enter delimiter (default ','): ");
         String delimiter = scanner.nextLine().trim();
-        if (delimiter.isEmpty()) delimiter = ",";
+        if (delimiter.isEmpty()) {
+            delimiter = ",";
+        }
 
-        UserComputeClient client = new UserComputeClient("localhost", 50052); // compute engine port
-        var response = client.submitJob(inputFile, outputFile, inlineValues, delimiter);
+        UserComputeClient client =
+                new UserComputeClient("localhost", 50052);
+        var response =
+                client.submitJob(inputFile, outputFile, inlineValues, delimiter);
 
         System.out.println("Success: " + response.getSuccess());
         System.out.println("Message: " + response.getMessage());
@@ -36,18 +41,28 @@ public class UserComputeClient {
     private final UserComputeServiceGrpc.UserComputeServiceBlockingStub blockingStub;
 
     public UserComputeClient(String host, int port) {
-        var channel = io.grpc.ManagedChannelBuilder.forAddress(host, port)
+        var channel = io.grpc.ManagedChannelBuilder
+                .forAddress(host, port)
                 .usePlaintext()
                 .build();
         blockingStub = UserComputeServiceGrpc.newBlockingStub(channel);
     }
 
-    public project.usercompute.UserComputeProto.JobResponse submitJob(String inputFile, String outputFile, int[] inlineValues, String delimiter) {
-        var builder = project.usercompute.UserComputeProto.JobRequest.newBuilder()
-                .setInputFile(inputFile)
-                .setOutputFile(outputFile)
-                .setDelimiter(delimiter);
-        for (int i : inlineValues) builder.addInlineValues(i);
+    public project.usercompute.UserComputeProto.JobResponse submitJob(
+            String inputFile,
+            String outputFile,
+            int[] inlineValues,
+            String delimiter) {
+
+        var builder =
+                project.usercompute.UserComputeProto.JobRequest.newBuilder()
+                        .setInputFile(inputFile)
+                        .setOutputFile(outputFile)
+                        .setDelimiter(delimiter);
+
+        for (int i : inlineValues) {
+            builder.addInlineValues(i);
+        }
 
         try {
             return blockingStub.submitJob(builder.build());
