@@ -3,33 +3,30 @@ package project.client;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import project.usercompute.UserComputeServiceImplementation;
-//import project.datastore.DataStoreServiceImplementation;
-import projectapis.network.MultithreadedNetworkAPI;
-
-//import projectapis.network.UserAPI;
-//import projectapis.network.UserAPIImplementation;
-import projectapis.process.DataStorageAPIImplementation;
 import projectapis.conceptual.FactorialAPIImplementation;
+import projectapis.network.MultithreadedNetworkAPI;
 
 public class GrpcServerMain {
     public static void main(String[] args) throws Exception {
-    	
-    	int maxThreads = 8;
-    	MultithreadedNetworkAPI userAPI = new MultithreadedNetworkAPI(new DataStorageAPIImplementation(), new FactorialAPIImplementation(), maxThreads);
 
-    	UserComputeServiceImplementation userComputeService = new UserComputeServiceImplementation(userAPI);
-        
-    	//UserAPIImplementation userAPI = new UserAPIImplementation();
-    	DataStorageAPIImplementation dataStorage = new DataStorageAPIImplementation();
-        project.datastore.DataStoreServiceImplementation dataStoreService = new project.datastore.DataStoreServiceImplementation(dataStorage);
+        int maxThreads = 8;
 
-        Server server = ServerBuilder.forPort(50051)
+        // Connect compute engine to datastore via gRPC
+        DataStoreGrpcClient dataStoreClient = new DataStoreGrpcClient("localhost", 50053);
+
+        MultithreadedNetworkAPI userAPI = new MultithreadedNetworkAPI(
+                dataStoreClient,
+                new FactorialAPIImplementation(),
+                maxThreads
+        );
+
+        UserComputeServiceImplementation userComputeService = new UserComputeServiceImplementation(userAPI);
+
+        Server server = ServerBuilder.forPort(50052)
                 .addService(userComputeService)
-                .addService(dataStoreService)
                 .build();
 
-
-        System.out.println("gRPC server started on port 50051 with " + maxThreads + " threads for user computations...");
+        System.out.println("Compute gRPC server started on port 50052 with " + maxThreads + " threads...");
         server.start();
         server.awaitTermination();
     }
