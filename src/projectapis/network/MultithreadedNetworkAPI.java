@@ -2,9 +2,13 @@ package projectapis.network;
 
 import projectapis.conceptual.FactorialAPI;
 import projectapis.process.DataStorageAPI;
+import projectapis.process.DataStorageAPIImplementation;
 
-import java.util.concurrent.*;
+import java.util.concurrent.;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.ArrayList;
 
 public class MultithreadedNetworkAPI implements UserAPI {
@@ -16,6 +20,10 @@ public class MultithreadedNetworkAPI implements UserAPI {
     private final FactorialAPI factorialAPI;
     private final ExecutorService executor;
 
+    public MultithreadedNetworkAPI(FactorialAPI factorialAPI) {
+        this(new DataStorageAPIImplementation(), factorialAPI, 4); // default datastore + 4 threads
+    }
+    
     public MultithreadedNetworkAPI(DataStorageAPI dataStorage, FactorialAPI factorialAPI, int maxThreads) {
         if (dataStorage == null || factorialAPI == null) throw new IllegalArgumentException("dependencies can't be null");
         if (maxThreads <= 0) throw new IllegalArgumentException("maxThreads must be > 0");
