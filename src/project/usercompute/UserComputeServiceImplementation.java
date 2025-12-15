@@ -18,7 +18,7 @@ public class UserComputeServiceImplementation extends UserComputeServiceGrpc.Use
     @Override
     public void submitJob(JobRequest request, StreamObserver<JobResponse> responseObserver) {
         try {
-            // Configure input, output, and delimiter if present
+            // configure input, output, and delimiter
             if (request.hasInputFile()) {
                 userAPI.setInput(request.getInputFile());
             }
@@ -31,10 +31,10 @@ public class UserComputeServiceImplementation extends UserComputeServiceGrpc.Use
                 userAPI.setDelimiter(request.getDelimiter());
             }
 
-            // Execute the computation
+            // execute the computation
             long lastResult = userAPI.executeComputation();
 
-            // Build a successful response
+            // successful response
             JobResponse response = JobResponse.newBuilder()
                     .setSuccess(true)
                     .setMessage("Last result: " + lastResult)
@@ -44,7 +44,7 @@ public class UserComputeServiceImplementation extends UserComputeServiceGrpc.Use
             responseObserver.onCompleted();
 
         } catch (Exception e) {
-            // Build an error response
+            // error response
             JobResponse response = JobResponse.newBuilder()
                     .setSuccess(false)
                     .setMessage("Error: " + e.getMessage())
