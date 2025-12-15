@@ -24,8 +24,12 @@ public class MultithreadedNetworkAPI implements UserAPI {
     }
     
     public MultithreadedNetworkAPI(DataStorageAPI dataStorage, FactorialAPI factorialAPI, int maxThreads) {
-        if (dataStorage == null || factorialAPI == null) throw new IllegalArgumentException("dependencies can't be null");
-        if (maxThreads <= 0) throw new IllegalArgumentException("maxThreads must be > 0");
+        if (dataStorage == null || factorialAPI == null) {
+        	throw new IllegalArgumentException("dependencies can't be null");
+        }
+        if (maxThreads <= 0) {
+        	throw new IllegalArgumentException("maxThreads must be > 0");
+        }
 
         this.dataStorage = dataStorage;
         this.factorialAPI = factorialAPI;
@@ -44,32 +48,45 @@ public class MultithreadedNetworkAPI implements UserAPI {
 
     @Override
     public void setDelimiter(String delimiter) { 
-    	if(delimiter!=null) this.delimiter = delimiter; 
+    	if(delimiter!=null) {
+    		this.delimiter = delimiter; 
+    	}
     }
 
     @Override
     public long executeComputation() {
-        if (inputPath == null || inputPath.isBlank() || outputPath == null || outputPath.isBlank()) return 0L;
+        if (inputPath == null || inputPath.isBlank() || outputPath == null || outputPath.isBlank()) {
+        	return 0L;
+        }
 
         List<Integer> numbers = dataStorage.loadIntegers(inputPath, delimiter);
-        if (numbers.isEmpty()) return 0L;
+        if (numbers.isEmpty()) {
+        	return 0L;
+        }
 
         List<Future<Long>> futures = new ArrayList<>();
         List<Long> results = new ArrayList<>();
 
         for (int n : numbers) {
-            if (n < 0) continue;
+            if (n < 0) {
+            	continue;
+            } 
             futures.add(executor.submit(() -> factorialAPI.computeDigitFactorialSum(n)));
         }
 
         for (Future<Long> f : futures) {
-            try { results.add(f.get()); }
-            catch (Exception e) { results.add(0L); }
+            try { 
+            	results.add(f.get()); 
+            } catch (Exception e) { 
+            	results.add(0L); 
+            	}
         }
 
         dataStorage.storeResults(outputPath, results);
         return results.isEmpty() ? 0L : results.get(results.size() - 1);
     }
 
-    public void shutdown() { executor.shutdown(); }
+    public void shutdown() { 
+    	executor.shutdown(); 
+    }
 }
