@@ -5,8 +5,7 @@ import java.util.Scanner;
 
 public class UserComputeClient {
 
-    public static void main(String[] args) 
-    {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter input file (or leave blank for inline numbers): ");
@@ -25,10 +24,7 @@ public class UserComputeClient {
 
         System.out.print("Enter delimiter (default ','): ");
         String delimiter = scanner.nextLine().trim();
-        if (delimiter.isEmpty()) 
-        {
-        	delimiter = ",";
-        }
+        if (delimiter.isEmpty()) delimiter = ",";
 
         UserComputeClient client = new UserComputeClient("localhost", 50052); // compute engine port
         var response = client.submitJob(inputFile, outputFile, inlineValues, delimiter);
@@ -39,8 +35,7 @@ public class UserComputeClient {
 
     private final UserComputeServiceGrpc.UserComputeServiceBlockingStub blockingStub;
 
-    public UserComputeClient(String host, int port) 
-    {
+    public UserComputeClient(String host, int port) {
         var channel = io.grpc.ManagedChannelBuilder.forAddress(host, port)
                 .usePlaintext()
                 .build();
@@ -52,13 +47,9 @@ public class UserComputeClient {
                 .setInputFile(inputFile)
                 .setOutputFile(outputFile)
                 .setDelimiter(delimiter);
-        for (int i : inlineValues) 
-        {
-        	builder.addInlineValues(i);
-        }
+        for (int i : inlineValues) builder.addInlineValues(i);
 
-        try 
-        {
+        try {
             return blockingStub.submitJob(builder.build());
         } catch (io.grpc.StatusRuntimeException e) {
             return project.usercompute.UserComputeProto.JobResponse.newBuilder()
