@@ -2,13 +2,12 @@ package project.datastore;
 
 import io.grpc.stub.StreamObserver;
 import project.datastore.DataStoreProto.*;
-import project.datastore.DataStoreServiceGrpc;
+import project.datastore.DataStoreServiceGrpc.DataStoreServiceImplBase;
 import projectapis.process.DataStorageAPI;
 
 import java.util.List;
 
-public class DataStoreServiceImplementation extends DataStoreServiceGrpc.DataStoreServiceImplBase {
-
+public class DataStoreServiceImplementation extends DataStoreServiceImplBase {
     private final DataStorageAPI dataStorage;
 
     public DataStoreServiceImplementation(DataStorageAPI dataStorage) {
@@ -18,8 +17,7 @@ public class DataStoreServiceImplementation extends DataStoreServiceGrpc.DataSto
     @Override
     public void readData(ReadDataRequest request, StreamObserver<ReadDataResponse> responseObserver) {
         try {
-            String delimiter = ","; // default
-            List<Integer> numbers = dataStorage.loadIntegers(request.getInputFile(), delimiter);
+            List<Integer> numbers = dataStorage.loadIntegers(request.getInputFile(), ",");
             ReadDataResponse response = ReadDataResponse.newBuilder()
                     .addAllNumbers(numbers)
                     .build();
@@ -34,12 +32,10 @@ public class DataStoreServiceImplementation extends DataStoreServiceGrpc.DataSto
     public void writeData(WriteDataRequest request, StreamObserver<WriteDataResponse> responseObserver) {
         try {
             List<Integer> numbers = request.getNumbersList();
-            List<Long> longNumbers = numbers.stream().map(Integer::longValue).toList();
-            dataStorage.storeResults(request.getOutputFile(), longNumbers);
-
+            dataStorage.storeResults(request.getOutputFile(), numbers.stream().map(Long::valueOf).toList());
             WriteDataResponse response = WriteDataResponse.newBuilder()
                     .setSuccess(true)
-                    .setMessage("Data stored successfully")
+                    .setMessage("Results stored successfully")
                     .build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
