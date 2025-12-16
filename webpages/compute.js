@@ -1,5 +1,5 @@
 let chart;
-const backendPort = 59769; // update to match your Jetty server
+const backendPort = 8080; // match Main.java fixed port
 
 function compute() {
     const nInput = document.getElementById('n');
@@ -7,7 +7,7 @@ function compute() {
     const n = nInput.value;
     if (!n || isNaN(n)) return alert("Please enter a valid number");
 
-    fetch(`http://localhost:${backendPort}/quick?n=${n}`)
+    fetch(`http://127.0.0.1:${backendPort}/quick?n=${n}`)
         .then(response => {
             if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
             return response.json();
