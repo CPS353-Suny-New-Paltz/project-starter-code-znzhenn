@@ -30,7 +30,10 @@ function compute() {
                         borderWidth: 1
                     }]
                 },
-                options: { responsive:true, scales:{ y:{ beginAtZero:true } } }
+                options: { 
+                    responsive: true, 
+                    scales: { y: { beginAtZero: true } } 
+                }
             });
         })
         .catch(err => {
