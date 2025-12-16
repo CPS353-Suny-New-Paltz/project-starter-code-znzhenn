@@ -1,12 +1,12 @@
 # Software Engineering Project Starter Code
 
-**Checkpoint 2: Drafting an API**
+** Checkpoint 2: Drafting an API **
 - Part 1: System computation: sum of the factorials of each digit
 - Part 2: System Design Diagram:
 
 ![Sum of Factorials API Diagram](images/checkpoint2diagram.jpeg)
 
-**Checkpoint 8: Performance Benchmarks **
+** Checkpoint 8: Performance Benchmarks **
 
 ### 1. Factorial Bottleneck Benchmark (Compute Engine)
  
@@ -39,3 +39,6 @@
  	
  	**Improved:**  47.3% faster
  	execution time (ms): 59,000,000
+ 	
+ 	
+ ** Capstone **
