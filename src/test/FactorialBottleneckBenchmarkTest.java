@@ -42,7 +42,7 @@ public class FactorialBottleneckBenchmarkTest {
      * */
     
     /* optimized
-     * last result: 63
-     * execution time (ms) 58
+     * last result:
+     * execution time (ms) 59
      * */
 }
