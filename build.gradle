@@ -81,6 +81,14 @@ dependencies {
     testImplementation "io.grpc:grpc-testing:${grpcVersion}"
     testImplementation "io.grpc:grpc-inprocess:${grpcVersion}"
 	
+	// Jetty dependencies
+	implementation 'org.eclipse.jetty:jetty-server:11.0.20'
+	implementation 'org.eclipse.jetty:jetty-servlet:11.0.20'
+	implementation 'com.google.code.gson:gson:2.10.1'
+	
+	// SLF4J logging
+	implementation 'org.slf4j:slf4j-simple:2.0.9'	
+    
 }
 
 test {
