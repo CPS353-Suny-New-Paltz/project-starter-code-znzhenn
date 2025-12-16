@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Digit Factorial Sum</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+      margin: 0;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .input-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 200px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #36a2eb;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #2b8ac4;
+    }
+
+    canvas {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .footer {
+      margin-top: 40px;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Digit Factorial Sum</h1>
+
+<div class="input-container">
+  <input id="n" type="number" placeholder="Enter a number">
+  <button onclick="compute()">Compute</button>
+</div>
+
+<canvas id="chart" width="400" height="250"></canvas>
+
+<div class="footer">
+  Powered by Chart.js
+</div>
+
+<script>
+let chart;
+
+function compute() {
+  const n = document.getElementById('n').value;
+  
+  fetch(`/quick?n=${n}`)   // calls your Java servlet
+    .then(response => response.json())
+    .then(data => {
+      if (chart) chart.destroy();  // remove previous chart
+
+      chart = new Chart(document.getElementById('chart'), {
+        type: 'bar',
+        data: {
+          labels: ['Result'],
+          datasets: [{
+            label: `Digit Factorial Sum of ${n}`,
+            data: data,
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top'
+            },
+            tooltip: {
+              enabled: true
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    })
+    .catch(err => console.error('Error fetching data:', err));
+}
+</script>
+
+</body>
+</html>
