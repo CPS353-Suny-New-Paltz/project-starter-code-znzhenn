@@ -1,8 +1,10 @@
 # Software Engineering Project Starter Code
 
 **Checkpoint 2: Drafting an API**
-- Part 1: System computation: sum of the factorials of each digit
-- Part 2: System Design Diagram:
+
+Part 1: System computation: sum of the factorials of each digit
+
+Part 2: System Design Diagram:
 
 ![Sum of Factorials API Diagram](images/checkpoint2diagram.jpeg)
 
