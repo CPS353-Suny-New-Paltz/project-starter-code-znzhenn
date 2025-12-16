@@ -19,10 +19,10 @@ public class QuickServlet extends HttpServlet {
         resp.setHeader("Access-Control-Allow-Origin", "*");
 
         int number = 0;
-        String nParam = req.getParameter("n");
-        if (nParam != null && !nParam.isBlank()) {
+        String nparam = req.getParameter("n");
+        if (nparam != null && !nparam.isBlank()) {
             try {
-                int parsed = Integer.parseInt(nParam);
+                int parsed = Integer.parseInt(nparam);
                 if (parsed >= 0) {
                     number = parsed;
                 }
